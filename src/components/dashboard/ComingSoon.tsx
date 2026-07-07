@@ -2,11 +2,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Construction } from 'lucide-react';
 
 interface ComingSoonProps {
-  title: string;
+  title?: string;
   description?: string;
 }
 
-const ComingSoon = ({ title, description }: ComingSoonProps) => {
+const ComingSoon = ({ title = 'Coming Soon', description }: ComingSoonProps) => {
   return (
     <div className="space-y-6">
       <div>
