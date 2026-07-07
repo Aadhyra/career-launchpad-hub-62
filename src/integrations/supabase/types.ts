@@ -226,6 +226,45 @@ export type Database = {
         }
         Relationships: []
       }
+      appointments: {
+        Row: {
+          appointment_date: string
+          appointment_time: string
+          created_at: string | null
+          doctor_id: string
+          id: string
+          notes: string | null
+          patient_id: string
+          status: string | null
+          symptoms: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          appointment_date: string
+          appointment_time: string
+          created_at?: string | null
+          doctor_id: string
+          id?: string
+          notes?: string | null
+          patient_id: string
+          status?: string | null
+          symptoms?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          appointment_date?: string
+          appointment_time?: string
+          created_at?: string | null
+          doctor_id?: string
+          id?: string
+          notes?: string | null
+          patient_id?: string
+          status?: string | null
+          symptoms?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       bank_accounts: {
         Row: {
           account_holder_name: string
@@ -639,6 +678,39 @@ export type Database = {
           },
         ]
       }
+      doctor_availability: {
+        Row: {
+          created_at: string | null
+          day_of_week: number
+          doctor_id: string
+          end_time: string
+          id: string
+          is_available: boolean | null
+          start_time: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          day_of_week: number
+          doctor_id: string
+          end_time: string
+          id?: string
+          is_available?: boolean | null
+          start_time: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          day_of_week?: number
+          doctor_id?: string
+          end_time?: string
+          id?: string
+          is_available?: boolean | null
+          start_time?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       employers: {
         Row: {
           address: string | null
@@ -827,6 +899,80 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      freelancer_earnings: {
+        Row: {
+          amount: number
+          cleared_at: string | null
+          created_at: string | null
+          freelancer_id: string
+          id: string
+          project_id: string | null
+          status: string | null
+        }
+        Insert: {
+          amount: number
+          cleared_at?: string | null
+          created_at?: string | null
+          freelancer_id: string
+          id?: string
+          project_id?: string | null
+          status?: string | null
+        }
+        Update: {
+          amount?: number
+          cleared_at?: string | null
+          created_at?: string | null
+          freelancer_id?: string
+          id?: string
+          project_id?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "freelancer_earnings_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "live_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      freelancer_portfolio_projects: {
+        Row: {
+          category: string
+          created_at: string | null
+          freelancer_id: string
+          id: string
+          image_url: string | null
+          live_url: string | null
+          tech_stack: string[] | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          freelancer_id: string
+          id?: string
+          image_url?: string | null
+          live_url?: string | null
+          tech_stack?: string[] | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          freelancer_id?: string
+          id?: string
+          image_url?: string | null
+          live_url?: string | null
+          tech_stack?: string[] | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
       }
       hr_internship_tasks: {
         Row: {
@@ -1488,6 +1634,36 @@ export type Database = {
           },
         ]
       }
+      medical_records: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          doctor_id: string | null
+          file_url: string | null
+          id: string
+          patient_id: string
+          record_type: string
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          doctor_id?: string | null
+          file_url?: string | null
+          id?: string
+          patient_id: string
+          record_type: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          doctor_id?: string | null
+          file_url?: string | null
+          id?: string
+          patient_id?: string
+          record_type?: string
+        }
+        Relationships: []
+      }
       module_exams: {
         Row: {
           created_at: string
@@ -1565,6 +1741,44 @@ export type Database = {
         }
         Relationships: []
       }
+      prescriptions: {
+        Row: {
+          appointment_id: string
+          doctor_id: string
+          id: string
+          instructions: string | null
+          issued_at: string | null
+          medications: Json
+          patient_id: string
+        }
+        Insert: {
+          appointment_id: string
+          doctor_id: string
+          id?: string
+          instructions?: string | null
+          issued_at?: string | null
+          medications?: Json
+          patient_id: string
+        }
+        Update: {
+          appointment_id?: string
+          doctor_id?: string
+          id?: string
+          instructions?: string | null
+          issued_at?: string | null
+          medications?: Json
+          patient_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "prescriptions_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -1597,6 +1811,94 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      project_bids: {
+        Row: {
+          bid_amount: number
+          cover_letter: string | null
+          created_at: string | null
+          estimated_days: number | null
+          freelancer_id: string
+          id: string
+          project_id: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          bid_amount: number
+          cover_letter?: string | null
+          created_at?: string | null
+          estimated_days?: number | null
+          freelancer_id: string
+          id?: string
+          project_id: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          bid_amount?: number
+          cover_letter?: string | null
+          created_at?: string | null
+          estimated_days?: number | null
+          freelancer_id?: string
+          id?: string
+          project_id?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_bids_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "live_projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_milestones: {
+        Row: {
+          amount: number
+          created_at: string | null
+          description: string | null
+          freelancer_id: string
+          id: string
+          project_id: string
+          status: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          description?: string | null
+          freelancer_id: string
+          id?: string
+          project_id: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          description?: string | null
+          freelancer_id?: string
+          id?: string
+          project_id?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_milestones_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "live_projects"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       project_purchases: {
         Row: {
