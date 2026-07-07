@@ -39,7 +39,7 @@ const FreelancerProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('live_projects')
         .select('*')
         .eq('status', 'open')
@@ -48,12 +48,12 @@ const FreelancerProjects = () => {
       if (error) throw error;
 
       // Ensure skills are correctly typed from JSON
-      const formatted = (data || []).map(p => ({
+      const formatted = ((data as any[]) || []).map((p: any) => ({
         ...p,
         skills_required: Array.isArray(p.skills_required) ? p.skills_required : []
       }));
       
-      setProjects(formatted);
+      setProjects(formatted as any);
     } catch (error) {
       console.error('Error fetching projects:', error);
     } finally {
