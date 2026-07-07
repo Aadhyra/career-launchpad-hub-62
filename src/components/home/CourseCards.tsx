@@ -15,7 +15,7 @@ import thumbNursing from "@/assets/demo-thumb-nursing.jpg";
 import thumbMobile from "@/assets/demo-thumb-mobile-dev.jpg";
 
 interface Course {
-  id: string;
+  id?: string;
   title: string;
   duration: string;
   students: string;

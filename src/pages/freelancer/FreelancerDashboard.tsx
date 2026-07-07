@@ -27,6 +27,7 @@ interface DashboardStats {
   completedProjects: number;
   earnings: number;
   milestonesCompleted: number;
+  overallProgress: number;
 }
 
 const DashboardHome = () => {
@@ -37,6 +38,7 @@ const DashboardHome = () => {
     completedProjects: 0,
     earnings: 0,
     milestonesCompleted: 0,
+    overallProgress: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -77,6 +79,7 @@ const DashboardHome = () => {
           completedProjects,
           earnings: totalEarnings,
           milestonesCompleted: completedMilestones,
+          overallProgress: totalBids > 0 ? Math.min(100, Math.round((completedProjects / Math.max(totalBids, 1)) * 100)) : 0,
         });
       } catch (error) {
         console.error('Error fetching stats:', error);

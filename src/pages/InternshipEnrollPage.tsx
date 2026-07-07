@@ -12,13 +12,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Briefcase, CheckCircle, CreditCard, GraduationCap, Loader2, BookOpen, Award } from "lucide-react";
+import { Briefcase, CheckCircle, CreditCard, GraduationCap, Loader2, BookOpen, Award, FileText } from "lucide-react";
+import ApplicantDetailsForm, { emptyApplicantDetails, ApplicantDetailsData } from "@/components/registration/ApplicantDetailsForm";
+import DocumentUploader, { DOC_LABELS } from "@/components/registration/DocumentUploader";
 
 const STEPS = [
   { id: 1, label: "Course Selection", icon: BookOpen },
   { id: 2, label: "Registration", icon: GraduationCap },
-  { id: 3, label: "Payment", icon: CreditCard },
-  { id: 4, label: "Confirmation", icon: CheckCircle },
+  { id: 3, label: "Details & Documents", icon: FileText },
+  { id: 4, label: "Payment", icon: CreditCard },
+  { id: 5, label: "Confirmation", icon: CheckCircle },
 ];
 
 const InternshipEnrollPage = () => {
@@ -39,6 +42,9 @@ const InternshipEnrollPage = () => {
     motivation: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const [details, setDetails] = useState<ApplicantDetailsData>(emptyApplicantDetails());
+  const [applicantDetailId, setApplicantDetailId] = useState<string | null>(null);
+  const [uploadedDocs, setUploadedDocs] = useState<{ document_type: string }[]>([]);
 
   useEffect(() => {
     if (!user) {
@@ -67,8 +73,56 @@ const InternshipEnrollPage = () => {
         toast({ title: "Complete the form", description: "All required fields must be filled.", variant: "destructive" });
         return;
       }
+      // seed the extended details from the basic form
+      setDetails(d => ({ ...d, full_name: d.full_name || form.full_name, phone: d.phone || form.mobile }));
     }
     setStep(s => s + 1);
+  };
+
+  const saveDetailsAndContinue = async () => {
+    if (!user) return;
+    if (!details.full_name || !details.phone || !details.email || !details.domain) {
+      toast({ title: "Missing details", description: "Name, phone, email and domain are required.", variant: "destructive" });
+      return;
+    }
+    const requiredDocs = (Object.keys(DOC_LABELS) as (keyof typeof DOC_LABELS)[])
+      .filter(k => DOC_LABELS[k].required);
+    const uploadedSet = new Set(uploadedDocs.map(d => d.document_type));
+    const missing = requiredDocs.filter(k => !uploadedSet.has(k));
+    if (missing.length) {
+      toast({
+        title: "Documents required",
+        description: `Please upload: ${missing.map(m => DOC_LABELS[m].label).join(", ")}`,
+        variant: "destructive",
+      });
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const payload = {
+        user_id: user.id,
+        application_type: "internship" as const,
+        reference_id: selectedCourseId || null,
+        ...details,
+        date_of_joining: details.date_of_joining || null,
+      };
+      if (applicantDetailId) {
+        await supabase.from("applicant_details").update(payload).eq("id", applicantDetailId);
+      } else {
+        const { data, error } = await supabase
+          .from("applicant_details")
+          .insert(payload)
+          .select("id")
+          .single();
+        if (error) throw error;
+        setApplicantDetailId(data.id);
+      }
+      setStep(4);
+    } catch (e: any) {
+      toast({ title: "Save failed", description: e.message, variant: "destructive" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handlePayment = async () => {
@@ -108,7 +162,7 @@ const InternshipEnrollPage = () => {
       });
       if (internshipError) throw internshipError;
 
-      setStep(4);
+      setStep(5);
       toast({ title: "Enrollment successful!", description: "Your internship is now active." });
     } catch (err: any) {
       toast({ title: "Enrollment failed", description: err.message, variant: "destructive" });
@@ -208,13 +262,33 @@ const InternshipEnrollPage = () => {
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" onClick={() => setStep(1)} className="flex-1">Back</Button>
-                <Button onClick={handleNext} className="flex-1">Continue to Payment</Button>
+                <Button onClick={handleNext} className="flex-1">Continue</Button>
               </div>
             </CardContent>
           </Card>
         )}
 
-        {step === 3 && selectedCourse && (
+        {step === 3 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Complete your details & upload documents</CardTitle>
+              <CardDescription>Required for internship, certification and stipend processing</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <ApplicantDetailsForm value={details} onChange={setDetails} />
+              <DocumentUploader applicantDetailId={applicantDetailId} onChange={setUploadedDocs} />
+              <div className="flex gap-2">
+                <Button variant="outline" onClick={() => setStep(2)} className="flex-1">Back</Button>
+                <Button onClick={saveDetailsAndContinue} className="flex-1" disabled={submitting}>
+                  {submitting && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+                  Save & Continue to Payment
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {step === 4 && selectedCourse && (
           <Card>
             <CardHeader>
               <CardTitle>Payment</CardTitle>
@@ -236,7 +310,7 @@ const InternshipEnrollPage = () => {
                 ⚡ <strong>Demo mode:</strong> Click "Pay Now" to simulate a successful payment. Razorpay will be wired up in production.
               </div>
               <div className="flex gap-2">
-                <Button variant="outline" onClick={() => setStep(2)} className="flex-1">Back</Button>
+                <Button variant="outline" onClick={() => setStep(3)} className="flex-1">Back</Button>
                 <Button onClick={handlePayment} className="flex-1" disabled={submitting}>
                   {submitting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <CreditCard className="h-4 w-4 mr-2" />}
                   Pay ₹{selectedCourse.price.toLocaleString()}
@@ -246,7 +320,7 @@ const InternshipEnrollPage = () => {
           </Card>
         )}
 
-        {step === 4 && (
+        {step === 5 && (
           <Card className="border-healthcare/30 bg-gradient-to-br from-healthcare/5 to-primary/5">
             <CardContent className="py-12 text-center space-y-4">
               <div className="inline-flex h-16 w-16 rounded-full bg-healthcare/20 items-center justify-center">
