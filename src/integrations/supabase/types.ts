@@ -14,6 +14,176 @@ export type Database = {
   }
   public: {
     Tables: {
+      applicant_details: {
+        Row: {
+          application_type: string
+          created_at: string
+          date_of_joining: string | null
+          domain: string | null
+          email: string
+          father_mobile: string | null
+          father_name: string | null
+          full_name: string
+          guardian_mobile: string | null
+          guardian_name: string | null
+          hr_name: string | null
+          id: string
+          mother_mobile: string | null
+          mother_name: string | null
+          perm_area: string | null
+          perm_city: string | null
+          perm_country: string | null
+          perm_district: string | null
+          perm_door_no: string | null
+          perm_landmark: string | null
+          perm_pincode: string | null
+          perm_state: string | null
+          perm_street: string | null
+          phone: string
+          pres_area: string | null
+          pres_city: string | null
+          pres_country: string | null
+          pres_district: string | null
+          pres_door_no: string | null
+          pres_landmark: string | null
+          pres_pincode: string | null
+          pres_state: string | null
+          pres_street: string | null
+          reference_id: string | null
+          salary_package: string | null
+          same_as_permanent: boolean
+          team_leader_name: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          application_type: string
+          created_at?: string
+          date_of_joining?: string | null
+          domain?: string | null
+          email: string
+          father_mobile?: string | null
+          father_name?: string | null
+          full_name: string
+          guardian_mobile?: string | null
+          guardian_name?: string | null
+          hr_name?: string | null
+          id?: string
+          mother_mobile?: string | null
+          mother_name?: string | null
+          perm_area?: string | null
+          perm_city?: string | null
+          perm_country?: string | null
+          perm_district?: string | null
+          perm_door_no?: string | null
+          perm_landmark?: string | null
+          perm_pincode?: string | null
+          perm_state?: string | null
+          perm_street?: string | null
+          phone: string
+          pres_area?: string | null
+          pres_city?: string | null
+          pres_country?: string | null
+          pres_district?: string | null
+          pres_door_no?: string | null
+          pres_landmark?: string | null
+          pres_pincode?: string | null
+          pres_state?: string | null
+          pres_street?: string | null
+          reference_id?: string | null
+          salary_package?: string | null
+          same_as_permanent?: boolean
+          team_leader_name?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          application_type?: string
+          created_at?: string
+          date_of_joining?: string | null
+          domain?: string | null
+          email?: string
+          father_mobile?: string | null
+          father_name?: string | null
+          full_name?: string
+          guardian_mobile?: string | null
+          guardian_name?: string | null
+          hr_name?: string | null
+          id?: string
+          mother_mobile?: string | null
+          mother_name?: string | null
+          perm_area?: string | null
+          perm_city?: string | null
+          perm_country?: string | null
+          perm_district?: string | null
+          perm_door_no?: string | null
+          perm_landmark?: string | null
+          perm_pincode?: string | null
+          perm_state?: string | null
+          perm_street?: string | null
+          phone?: string
+          pres_area?: string | null
+          pres_city?: string | null
+          pres_country?: string | null
+          pres_district?: string | null
+          pres_door_no?: string | null
+          pres_landmark?: string | null
+          pres_pincode?: string | null
+          pres_state?: string | null
+          pres_street?: string | null
+          reference_id?: string | null
+          salary_package?: string | null
+          same_as_permanent?: boolean
+          team_leader_name?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      applicant_documents: {
+        Row: {
+          applicant_detail_id: string | null
+          created_at: string
+          document_type: string
+          file_name: string
+          id: string
+          mime_type: string | null
+          size_bytes: number | null
+          storage_path: string
+          user_id: string
+        }
+        Insert: {
+          applicant_detail_id?: string | null
+          created_at?: string
+          document_type: string
+          file_name: string
+          id?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          storage_path: string
+          user_id: string
+        }
+        Update: {
+          applicant_detail_id?: string | null
+          created_at?: string
+          document_type?: string
+          file_name?: string
+          id?: string
+          mime_type?: string | null
+          size_bytes?: number | null
+          storage_path?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "applicant_documents_applicant_detail_id_fkey"
+            columns: ["applicant_detail_id"]
+            isOneToOne: false
+            referencedRelation: "applicant_details"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       applications: {
         Row: {
           course: string
