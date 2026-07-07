@@ -63,7 +63,7 @@ const PatientAppointments = () => {
       const { data: doctorRoles, error: rolesError } = await supabase
         .from('user_roles')
         .select('user_id')
-        .eq('role', 'doctor');
+        .eq('role', 'doctor' as any);
         
       if (!rolesError && doctorRoles) {
         const doctorIds = doctorRoles.map(r => r.user_id);
