@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import AIChatbot from "@/components/shared/AIChatbot";
 
 // Public Pages
 import Index from "./pages/Index";
@@ -226,6 +227,7 @@ const App = () => (
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <AIChatbot />
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
