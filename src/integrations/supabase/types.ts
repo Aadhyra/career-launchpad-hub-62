@@ -1944,6 +1944,54 @@ export type Database = {
           },
         ]
       }
+      razorpay_debug_logs: {
+        Row: {
+          amount: number | null
+          created_at: string
+          currency: string | null
+          error_message: string | null
+          event_type: string
+          id: string
+          order_id: string | null
+          payment_id: string | null
+          raw_response: Json | null
+          receipt: string | null
+          signature_expected: string | null
+          signature_provided: string | null
+          status: string
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          currency?: string | null
+          error_message?: string | null
+          event_type: string
+          id?: string
+          order_id?: string | null
+          payment_id?: string | null
+          raw_response?: Json | null
+          receipt?: string | null
+          signature_expected?: string | null
+          signature_provided?: string | null
+          status?: string
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          currency?: string | null
+          error_message?: string | null
+          event_type?: string
+          id?: string
+          order_id?: string | null
+          payment_id?: string | null
+          raw_response?: Json | null
+          receipt?: string | null
+          signature_expected?: string | null
+          signature_provided?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       resume_data: {
         Row: {
           certifications: Json | null

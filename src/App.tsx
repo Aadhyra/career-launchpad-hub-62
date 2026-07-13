@@ -89,6 +89,7 @@ import AdminCertificates from "./pages/admin/AdminCertificates";
 import AdminPayments from "./pages/admin/AdminPayments";
 import UpdatePassword from "./pages/UpdatePassword";
 import AdminSettings from "./pages/admin/AdminSettings";
+import AdminRazorpayDebug from "./pages/admin/AdminRazorpayDebug";
 
 // Employer Pages
 import EmployerLayout from "./layouts/EmployerLayout";
@@ -221,6 +222,7 @@ const App = () => (
               <Route path="employers" element={<AdminEmployers />} />
               <Route path="certificates" element={<AdminCertificates />} />
               <Route path="payments" element={<AdminPayments />} />
+              <Route path="razorpay-debug" element={<AdminRazorpayDebug />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
 
