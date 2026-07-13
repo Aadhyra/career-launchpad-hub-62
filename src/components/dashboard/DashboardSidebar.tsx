@@ -19,6 +19,7 @@ import {
   Users,
   Layers,
   Building2,
+  Bug,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -32,6 +33,7 @@ const adminMenuItems = [
   { icon: Briefcase, label: 'Employers', href: '/admin/employers' },
   { icon: Award, label: 'Certificates', href: '/admin/certificates' },
   { icon: CreditCard, label: 'Payments', href: '/admin/payments' },
+  { icon: Bug, label: 'Razorpay Debug', href: '/admin/razorpay-debug' },
   { icon: Settings, label: 'Settings', href: '/admin/settings' },
 ];
 
