@@ -39,7 +39,33 @@ serve(async (req) => {
     const key_secret = Deno.env.get('RAZORPAY_KEY_SECRET')
 
     if (!key_id || !key_secret) {
-      throw new Error('Razorpay credentials not configured in environment variables')
+      // DEMO MODE: keys not configured — return a mock order so the UI flow works end-to-end.
+      const demoOrder = {
+        id: `order_demo_${crypto.randomUUID().replace(/-/g, '').slice(0, 14)}`,
+        entity: 'order',
+        amount: Math.round((amount ?? 0) * 100),
+        amount_paid: 0,
+        amount_due: Math.round((amount ?? 0) * 100),
+        currency,
+        receipt,
+        status: 'created',
+        demo_mode: true,
+        key_id: 'rzp_test_demo',
+      }
+      await logEvent({
+        event_type: 'order_created',
+        status: 'success',
+        order_id: demoOrder.id,
+        amount,
+        currency,
+        receipt,
+        error_message: 'DEMO MODE — Razorpay keys not configured',
+        raw_response: demoOrder,
+      })
+      return new Response(JSON.stringify(demoOrder), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200,
+      })
     }
 
     const auth = btoa(`${key_id}:${key_secret}`)

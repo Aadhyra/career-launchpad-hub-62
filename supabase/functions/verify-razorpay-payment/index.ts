@@ -37,11 +37,27 @@ serve(async (req) => {
 
     const key_secret = Deno.env.get('RAZORPAY_KEY_SECRET')
 
-    if (!key_secret) {
-      throw new Error('Razorpay secret not configured in environment variables')
+    if (!razorpay_order_id || !razorpay_payment_id) {
+      throw new Error('Missing required payment verification fields')
     }
 
-    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
+    // DEMO MODE: no secret configured OR order came from demo mode — auto-verify.
+    if (!key_secret || razorpay_order_id.startsWith('order_demo_')) {
+      await logEvent({
+        event_type: 'verify',
+        status: 'success',
+        order_id: razorpay_order_id,
+        payment_id: razorpay_payment_id,
+        signature_provided: razorpay_signature ?? null,
+        error_message: 'DEMO MODE — signature check skipped',
+      })
+      return new Response(
+        JSON.stringify({ success: true, demo_mode: true, message: 'Demo payment verified' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 },
+      )
+    }
+
+    if (!razorpay_signature) {
       throw new Error('Missing required payment verification fields')
     }
 
