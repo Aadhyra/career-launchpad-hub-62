@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Briefcase, MapPin, Clock, ArrowRight, Users, Zap, Heart, Search, Filter, IndianRupee, Loader2, Monitor, TrendingUp, Palette, Stethoscope } from "lucide-react";
+import { Briefcase, MapPin, Clock, ArrowRight, Users, Zap, Heart, Search, Filter, IndianRupee, Loader2, Monitor, TrendingUp, Palette, Stethoscope, CheckCircle2, Code2, Bot, FileCheck, Mail, Target, Camera, Upload, GraduationCap } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
@@ -237,7 +237,7 @@ const CareersPage = () => {
             <div className="text-center mt-12 bg-muted/30 rounded-2xl p-8">
               <h3 className="font-heading text-2xl font-bold mb-3">Ready to Start Your Career?</h3>
               <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                Pay the evaluation fee (₹499), complete MCQ + Technical + AI HR Interview, and get placed in top companies!
+                Freshers ₹300 · Experienced ₹700 — complete Technical MCQ, Coding & Project Task, and AI HR Interview to get placed in top companies.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link to="/auth">
@@ -247,6 +247,171 @@ const CareersPage = () => {
                   <Button variant="outline" size="lg">Learn About Process</Button>
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Candidate Evaluation & Hiring Process */}
+        <section className="py-16 lg:py-20 bg-muted/20 border-t">
+          <div className="container max-w-6xl">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10 border-primary/20">
+                AADHYRA INNOVATIONS PVT. LTD.
+              </Badge>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+                Candidate Evaluation & Hiring Process
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                To ensure a fair and skill-based hiring process, all applicants will
+                undergo our structured evaluation system.
+              </p>
+            </div>
+
+            {/* Evaluation Fee */}
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
+              <div className="bg-card rounded-2xl border-2 border-primary/20 p-8 text-center shadow-card">
+                <GraduationCap className="h-10 w-10 text-primary mx-auto mb-3" />
+                <p className="text-sm font-medium text-muted-foreground mb-1">Freshers</p>
+                <div className="flex items-center justify-center text-4xl font-heading font-bold text-foreground">
+                  <IndianRupee className="h-7 w-7" />300
+                </div>
+                <p className="text-xs text-muted-foreground mt-3">0 – 1 year experience</p>
+              </div>
+              <div className="bg-card rounded-2xl border-2 border-primary/20 p-8 text-center shadow-card">
+                <Briefcase className="h-10 w-10 text-primary mx-auto mb-3" />
+                <p className="text-sm font-medium text-muted-foreground mb-1">Experienced Candidates</p>
+                <div className="flex items-center justify-center text-4xl font-heading font-bold text-foreground">
+                  <IndianRupee className="h-7 w-7" />700
+                </div>
+                <p className="text-xs text-muted-foreground mt-3">1+ years experience</p>
+              </div>
+              <p className="md:col-span-2 text-center text-sm text-muted-foreground">
+                The evaluation fee covers the complete assessment process and
+                candidate performance report.
+              </p>
+            </div>
+
+            {/* Rounds */}
+            <h3 className="font-heading text-2xl font-bold text-center mb-8">Hiring Process</h3>
+            <div className="space-y-6">
+              {/* Round 1 */}
+              <div className="bg-card rounded-2xl border p-6 md:p-8 shadow-card">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-tech/10 text-tech flex items-center justify-center flex-shrink-0">
+                    <Monitor className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <Badge className="bg-tech/10 text-tech border-tech/20 hover:bg-tech/10">Round 1</Badge>
+                      <h4 className="font-heading font-semibold text-lg">Technical Assessment (Online)</h4>
+                    </div>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-tech mt-0.5 flex-shrink-0" /> Online MCQ test based on the candidate's selected domain.</li>
+                      <li className="flex gap-2"><Camera className="h-4 w-4 text-tech mt-0.5 flex-shrink-0" /> Webcam monitoring during the assessment.</li>
+                      <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-tech mt-0.5 flex-shrink-0" /> Basic aptitude and technical knowledge evaluation.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Round 2 */}
+              <div className="bg-card rounded-2xl border p-6 md:p-8 shadow-card">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-marketing/10 text-marketing flex items-center justify-center flex-shrink-0">
+                    <Code2 className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <Badge className="bg-marketing/10 text-marketing border-marketing/20 hover:bg-marketing/10">Round 2</Badge>
+                      <h4 className="font-heading font-semibold text-lg">Technical Coding & Practical Task</h4>
+                    </div>
+                    <div className="space-y-4 text-sm">
+                      <div>
+                        <p className="font-medium text-foreground mb-1">2 Coding Questions</p>
+                        <p className="text-muted-foreground">Candidates must solve two programming problems related to their technology stack.</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground mb-1">Project-Based Assignment</p>
+                        <p className="text-muted-foreground mb-2">
+                          Real-world task based on the selected skill (e.g., React, Java Full Stack, Python, UI/UX, Testing, etc.).
+                        </p>
+                        <div className="flex items-center gap-2 text-marketing font-medium mb-3">
+                          <Clock className="h-4 w-4" /> Time to complete: 2 Days
+                        </div>
+                        <p className="font-medium text-foreground mb-1">Candidates must upload:</p>
+                        <ul className="grid sm:grid-cols-2 gap-2 text-muted-foreground">
+                          <li className="flex gap-2"><Upload className="h-4 w-4 text-marketing mt-0.5 flex-shrink-0" /> Source Code</li>
+                          <li className="flex gap-2"><Upload className="h-4 w-4 text-marketing mt-0.5 flex-shrink-0" /> Working Project</li>
+                          <li className="flex gap-2"><FileCheck className="h-4 w-4 text-marketing mt-0.5 flex-shrink-0" /> Project Documentation (PDF)</li>
+                          <li className="flex gap-2"><FileCheck className="h-4 w-4 text-marketing mt-0.5 flex-shrink-0" /> Explanation of the solution & approach</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Round 3 */}
+              <div className="bg-card rounded-2xl border p-6 md:p-8 shadow-card">
+                <div className="flex items-start gap-4">
+                  <div className="h-12 w-12 rounded-xl bg-hr/10 text-hr flex items-center justify-center flex-shrink-0">
+                    <Bot className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <Badge className="bg-hr/10 text-hr border-hr/20 hover:bg-hr/10">Round 3</Badge>
+                      <h4 className="font-heading font-semibold text-lg">AI HR Interview</h4>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Candidates who successfully complete the technical rounds will attend an AI-powered HR interview covering:
+                    </p>
+                    <ul className="grid sm:grid-cols-2 gap-2 text-sm text-muted-foreground">
+                      {[
+                        "Self Introduction",
+                        "Communication Skills",
+                        "Project Discussion",
+                        "Career Goals",
+                        "Salary Expectations",
+                        "Notice Period (experienced)",
+                        "Availability to Join",
+                      ].map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-hr mt-0.5 flex-shrink-0" /> {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Result & Feedback */}
+            <div className="mt-10 bg-card rounded-2xl border p-6 md:p-8 shadow-card">
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                  <Mail className="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 className="font-heading font-semibold text-lg mb-3">Result & Feedback</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /> Candidate performance will be reviewed after all evaluation rounds.</li>
+                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /> A detailed evaluation report will be generated.</li>
+                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /> Interview result and feedback will be sent to the candidate's registered email address.</li>
+                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" /> Shortlisted candidates will receive further interview or offer letter communication from the AADHYRA HR Team.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Our Goal */}
+            <div className="mt-10 rounded-2xl p-8 md:p-10 gradient-hero text-primary-foreground text-center">
+              <Target className="h-10 w-10 mx-auto mb-4 opacity-90" />
+              <h4 className="font-heading text-2xl font-bold mb-3">Our Goal</h4>
+              <p className="max-w-2xl mx-auto text-white/85">
+                We believe in selecting candidates based on real skills, practical
+                knowledge, and problem-solving ability — ensuring every applicant
+                gets a transparent and professional evaluation experience.
+              </p>
             </div>
           </div>
         </section>
