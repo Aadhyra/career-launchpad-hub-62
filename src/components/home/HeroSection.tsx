@@ -1,137 +1,71 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Search, Code, Heart, Brain, Users, Building2, MapPin, Sparkles } from "lucide-react";
-import AnimatedBackground from "@/components/shared/AnimatedBackground";
-import bgTalent from "@/assets/card-bg-talent.jpg";
-import bgTech from "@/assets/card-bg-tech.jpg";
-import bgHealth from "@/assets/card-bg-health.jpg";
-import bgAiLab from "@/assets/card-bg-ailab.jpg";
+import { ArrowRight, Code2, Cpu, GraduationCap, Briefcase, ShieldCheck, Sparkles } from "lucide-react";
 
 const HeroSection = () => {
   return (
     <section className="relative overflow-hidden gradient-hero text-primary-foreground">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }} />
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "3s" }} />
+      {/* Animated tech background */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.12]" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-16 left-8 w-72 h-72 bg-white/25 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-8 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-tech/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "3s" }} />
+      </div>
+      {/* Floating tech particles */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
+        {[
+          { Icon: Code2, cls: "top-24 left-[8%]", d: "0s" },
+          { Icon: Cpu, cls: "top-40 right-[10%]", d: "1s" },
+          { Icon: GraduationCap, cls: "bottom-28 left-[14%]", d: "2s" },
+          { Icon: Briefcase, cls: "bottom-40 right-[16%]", d: "1.5s" },
+        ].map(({ Icon, cls, d }, i) => (
+          <div key={i} className={`absolute ${cls} h-14 w-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center animate-float`} style={{ animationDelay: d }}>
+            <Icon className="h-6 w-6 text-white/80" />
+          </div>
+        ))}
       </div>
 
-      <div className="container relative z-10 pt-16 pb-32 lg:pt-24 lg:pb-48">
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm mb-6 animate-fade-in">
-            <span className="flex h-2 w-2 rounded-full bg-healthcare animate-pulse" />
-            <span className="text-sm font-medium">One Unified Platform · 4 Powerful Products</span>
+      <div className="container relative z-10 pt-20 pb-32 lg:pt-28 lg:pb-44">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 mb-6 animate-fade-in">
+            <Sparkles className="h-4 w-4 text-accent" />
+            <span className="text-xs sm:text-sm font-medium tracking-wide">AADHYRA INNOVATIONS PVT LTD · Empowering Careers, Businesses &amp; Technology</span>
           </div>
 
-          <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            The Complete{" "}
-            Career Ecosystem
+          <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            Your Trusted Technology &amp; Career Growth Partner
           </h1>
 
-          <p className="text-base md:text-lg text-white/85 mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            Talent hiring · Freelance projects · AI healthcare · AI project builder — all under one roof
+          <p className="text-base md:text-lg text-white/85 mb-9 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+            We provide Software Development, AI Solutions, Corporate Training, Professional Internships,
+            Recruitment Services, Campus Hiring, and Career Development through one integrated platform.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <Link to="/apply">
-              <Button variant="accent" size="xl" className="group">
-                Apply Now
+            <a href="#services">
+              <Button variant="accent" size="xl" className="group w-full sm:w-auto rounded-full">
+                Explore Services
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
+            </a>
+            <Link to="/internship">
+              <Button variant="heroOutline" size="xl" className="w-full sm:w-auto rounded-full">
+                Apply for Internship
+              </Button>
             </Link>
-            <Link to="/placement">
-              <Button variant="heroOutline" size="xl">
-                Explore Ecosystem
+            <Link to="/employer/register">
+              <Button variant="heroOutline" size="xl" className="w-full sm:w-auto rounded-full">
+                Hire Talent
               </Button>
             </Link>
           </div>
-        </div>
 
-        {/* Product showcase grid */}
-        <div className="grid md:grid-cols-2 gap-5 max-w-6xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-          {/* AADHYRA TALENT CONNECT */}
-          <ProductCard
-            title="AADHYRA TALENT CONNECT"
-            tagline="AI Recruitment · Pan-India Hiring"
-            icon={Search}
-            gradient="from-blue-500/30 to-primary/40"
-            ringColor="ring-blue-300/40"
-            bgImage={bgTalent}
-            features={[
-              { icon: MapPin, text: "Pan-India job opportunities for candidates" },
-              { icon: Building2, text: "Employers find verified talent fast" },
-              { icon: Users, text: "Campus & placement drives across India" },
-              { icon: Sparkles, text: "Upcoming: Employer onboarding open now" },
-            ]}
-            primaryCta={{ label: "Candidate Login", to: "/auth?role=candidate" }}
-            secondaryCta={{ label: "Employer Login", to: "/auth?role=employer" }}
-            learnMore="/placement/talent-connect"
-          />
-
-          {/* AADHYRA TECH PARTNER */}
-          <ProductCard
-            title="AADHYRA TECH PARTNER"
-            tagline="Freelance Marketplace · Like Upwork"
-            icon={Code}
-            gradient="from-emerald-400/30 to-teal-500/40"
-            ringColor="ring-emerald-300/40"
-            bgImage={bgTech}
-            features={[
-              { icon: Code, text: "Bid on real freelance projects" },
-              { icon: Building2, text: "Project owners post & hire securely" },
-              { icon: Sparkles, text: "Escrow payments + portfolio showcase" },
-              { icon: Users, text: "Verified freelancers across India" },
-            ]}
-            primaryCta={{ label: "Freelancer Login", to: "/auth?role=freelancer" }}
-            secondaryCta={{ label: "Project Owner Login", to: "/auth?role=project_owner" }}
-            learnMore="/placement/tech-partner"
-          />
-
-          {/* AADHYRA HEALTH CONNECT */}
-          <ProductCard
-            title="AADHYRA HEALTH CONNECT"
-            tagline="AI Healthcare · Telemedicine"
-            icon={Heart}
-            gradient="from-cyan-400/30 to-blue-500/40"
-            ringColor="ring-cyan-300/40"
-            bgImage={bgHealth}
-            features={[
-              { icon: Sparkles, text: "AI symptom checker & health scans" },
-              { icon: Users, text: "Online doctor consultations 24/7" },
-              { icon: Heart, text: "Lab tests, pharmacy & home nursing" },
-              { icon: Building2, text: "Doctors & nurses join the network" },
-            ]}
-            primaryCta={{ label: "Patient Login", to: "/auth?role=patient" }}
-            secondaryCta={{ label: "Doctor / Nurse Login", to: "/auth?role=doctor" }}
-            learnMore="/placement/health-connect"
-          />
-
-          {/* AADHYRA LAB */}
-          <ProductCard
-            title="AADHYRA LAB"
-            tagline="Prompt → Project Builder"
-            icon={Brain}
-            gradient="from-violet-400/30 to-purple-600/40"
-            ringColor="ring-violet-300/40"
-            bgImage={bgAiLab}
-            features={[
-              { icon: Sparkles, text: "Describe an idea — AI builds the plan" },
-              { icon: Code, text: "Tech stack, pages & data model auto-generated" },
-              { icon: Brain, text: "Resume, mock interview & career path AI" },
-              { icon: Users, text: "Free to try — no signup required" },
-            ]}
-            primaryCta={{ label: "Open AADHYRA LAB", to: "/placement/ai-lab" }}
-            secondaryCta={{ label: "Learn More", to: "/placement" }}
-            learnMore="/placement/ai-lab"
-          />
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-10 border-t border-white/10 max-w-5xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-          <Stat value="5,000+" label="Students Placed" />
-          <Stat value="500+" label="Hiring Partners" />
-          <Stat value="95%" label="Placement Rate" />
-          <Stat value="50+" label="Hospital Partners" />
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs sm:text-sm text-white/70 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-healthcare" /> ISO-grade delivery process</span>
+            <span className="inline-flex items-center gap-2"><GraduationCap className="h-4 w-4 text-accent" /> 1000+ professionals trained</span>
+            <span className="inline-flex items-center gap-2"><Briefcase className="h-4 w-4 text-white/80" /> 100+ hiring companies</span>
+          </div>
         </div>
       </div>
 
@@ -143,101 +77,5 @@ const HeroSection = () => {
     </section>
   );
 };
-
-type Feature = { icon: React.ComponentType<{ className?: string }>; text: string };
-type Cta = { label: string; to: string };
-
-const ProductCard = ({
-  title,
-  tagline,
-  icon: Icon,
-  gradient,
-  ringColor,
-  bgImage,
-  features,
-  primaryCta,
-  secondaryCta,
-  learnMore,
-}: {
-  title: string;
-  tagline: string;
-  icon: React.ComponentType<{ className?: string }>;
-  gradient: string;
-  ringColor: string;
-  bgImage: string;
-  features: Feature[];
-  primaryCta: Cta;
-  secondaryCta: Cta;
-  learnMore: string;
-}) => {
-  return (
-    <div className={`group relative rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 ring-1 ${ringColor} hover:bg-white/10 transition-all duration-500 overflow-hidden hover:-translate-y-1`}>
-      {/* Hero background image with slow Ken Burns motion */}
-      <img
-        src={bgImage}
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        width={1024}
-        height={640}
-        className="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-[6000ms] ease-out animate-[float_12s_ease-in-out_infinite]"
-      />
-      {/* Dark overlay for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-slate-900/80" />
-      {/* Brand color tint */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-50 group-hover:opacity-70 transition-opacity duration-500 mix-blend-overlay`} />
-      <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-white/10 blur-3xl group-hover:bg-white/20 transition-all" />
-
-      <div className="relative p-6 md:p-7">
-        <div className="flex items-start gap-4 mb-4">
-          <div className="h-14 w-14 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center flex-shrink-0">
-            <Icon className="h-7 w-7 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-heading text-lg md:text-xl font-bold text-white leading-tight">{title}</h3>
-            <p className="text-xs md:text-sm text-white/70 mt-0.5">{tagline}</p>
-          </div>
-        </div>
-
-        <ul className="space-y-2 mb-5">
-          {features.map((f) => {
-            const FIcon = f.icon;
-            return (
-              <li key={f.text} className="flex items-start gap-2.5 text-sm text-white/85">
-                <FIcon className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                <span>{f.text}</span>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="flex flex-wrap gap-2">
-          <Link to={primaryCta.to} className="flex-1 min-w-[140px]">
-            <Button variant="accent" size="sm" className="w-full">
-              {primaryCta.label}
-            </Button>
-          </Link>
-          <Link to={secondaryCta.to} className="flex-1 min-w-[140px]">
-            <Button variant="heroOutline" size="sm" className="w-full">
-              {secondaryCta.label}
-            </Button>
-          </Link>
-        </div>
-
-        <Link to={learnMore} className="inline-flex items-center gap-1 text-xs text-white/70 hover:text-white mt-3 group/link">
-          Learn more
-          <ArrowRight className="h-3 w-3 transition-transform group-hover/link:translate-x-0.5" />
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-const Stat = ({ value, label }: { value: string; label: string }) => (
-  <div className="text-center">
-    <div className="text-2xl md:text-4xl font-heading font-bold">{value}</div>
-    <div className="text-xs md:text-sm text-white/70 mt-1">{label}</div>
-  </div>
-);
 
 export default HeroSection;
