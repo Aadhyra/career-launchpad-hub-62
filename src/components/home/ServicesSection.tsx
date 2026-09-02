@@ -23,7 +23,7 @@ const groups = [
   {
     icon: Rocket,
     title: "Internship Programs",
-    href: "/internship",
+    href: "/internships",
     items: ["Live Industry Projects", "Mentor Guidance", "Internship Certificate", "Placement Assistance", "Resume Building", "Interview Preparation"],
   },
   {
