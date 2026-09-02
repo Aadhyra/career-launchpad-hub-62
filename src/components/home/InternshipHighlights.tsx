@@ -32,7 +32,7 @@ const InternshipHighlights = () => (
       </div>
 
       <div className="text-center mt-12">
-        <Link to="/internship">
+        <Link to="/internships">
           <Button variant="accent" size="xl" className="rounded-full group">
             Apply Now
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
