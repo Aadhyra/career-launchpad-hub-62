@@ -49,7 +49,7 @@ const HeroSection = () => {
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <Link to="/internship">
+            <Link to="/internships">
               <Button variant="heroOutline" size="xl" className="w-full sm:w-auto rounded-full">
                 Apply for Internship
               </Button>
