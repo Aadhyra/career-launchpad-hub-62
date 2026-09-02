@@ -125,6 +125,10 @@ export default {
           "50%": { transform: "translateX(-10%)" },
           "100%": { transform: "translateX(0)" },
         },
+        "scroll-x": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -136,6 +140,7 @@ export default {
         "float": "float 3s ease-in-out infinite",
         "spin-slow": "spin-slow 8s linear infinite",
         "marquee": "marquee 12s ease-in-out infinite",
+        "scroll-x": "scroll-x 35s linear infinite",
       },
     },
   },
