@@ -226,6 +226,16 @@ const App = () => (
               <Route path="settings" element={<AdminSettings />} />
             </Route>
 
+            {/* Super Admin Panel */}
+            <Route path="/superadmin" element={<SuperAdminLayout />}>
+              <Route index element={<SuperAdminDashboard />} />
+              <Route path="reports" element={<ReportsCenter />} />
+              <Route path="settings" element={<SuperAdminSettings />} />
+              <Route path="m/:slug" element={<SuperAdminModulePage />} />
+            </Route>
+
+
+
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
           </Routes>
