@@ -20,6 +20,11 @@ import HRTrainingPage from "./pages/HRTrainingPage";
 import InternshipPage from "./pages/InternshipPage";
 import JobPage from "./pages/JobPage";
 import AdminAuth from "./pages/admin/AdminAuth";
+import SuperAdminLayout from "./layouts/SuperAdminLayout";
+import SuperAdminDashboard from "./pages/superadmin/SuperAdminDashboard";
+import ReportsCenter from "./pages/superadmin/ReportsCenter";
+import SuperAdminSettings from "./pages/superadmin/SuperAdminSettings";
+import SuperAdminModulePage from "./pages/superadmin/ModulePage";
 import CertificateVerifyPage from "./pages/CertificateVerifyPage";
 import InternshipEnrollPage from "./pages/InternshipEnrollPage";
 import CampusDrivePage from "./pages/CampusDrivePage";
@@ -225,6 +230,16 @@ const App = () => (
               <Route path="razorpay-debug" element={<AdminRazorpayDebug />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
+
+            {/* Super Admin Panel */}
+            <Route path="/superadmin" element={<SuperAdminLayout />}>
+              <Route index element={<SuperAdminDashboard />} />
+              <Route path="reports" element={<ReportsCenter />} />
+              <Route path="settings" element={<SuperAdminSettings />} />
+              <Route path="m/:slug" element={<SuperAdminModulePage />} />
+            </Route>
+
+
 
             {/* Catch-all */}
             <Route path="*" element={<NotFound />} />
