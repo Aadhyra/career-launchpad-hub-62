@@ -21,10 +21,42 @@ const stats = [
 ];
 
 const values = [
-  { icon: Target, title: "Our Mission", description: "To bridge the gap between education and industry through practical, job-ready training that transforms careers and uplifts families." },
-  { icon: Eye, title: "Our Vision", description: "To become India's most trusted multi-domain training and placement platform — building skilled professionals across IT, Healthcare, HR & Creative industries." },
-  { icon: Heart, title: "Our Values", description: "Excellence in training, integrity in placement, empathy in mentorship — every student's success is a promise we keep." },
+  { icon: Target, title: "Our Mission", description: "To empower businesses with innovative technology solutions while enabling students, professionals and organizations through quality education, industry-focused training, internships, recruitment, placement services and digital transformation." },
+  { icon: Eye, title: "Our Vision", description: "To become one of India's most trusted technology and talent ecosystem companies by connecting innovation, education, healthcare and employment through world-class digital solutions, strategic partnerships and continuous innovation." },
+  { icon: Heart, title: "Our Values", description: "Innovation & creativity, integrity & transparency, excellence in quality, customer success, continuous learning, collaboration, accountability and social responsibility." },
 ];
+
+const coreValues = [
+  "Innovation & Creativity",
+  "Integrity & Transparency",
+  "Excellence in Quality",
+  "Customer Success",
+  "Continuous Learning",
+  "Collaboration & Teamwork",
+  "Accountability",
+  "Social Responsibility",
+];
+
+const whyChoose = [
+  "Comprehensive IT & Software Development Services",
+  "AI-Powered Business Solutions",
+  "Industry-Oriented Training Programs",
+  "Real-Time Internship Opportunities",
+  "End-to-End Recruitment & Placement Services",
+  "Healthcare Technology & Workforce Solutions",
+  "Experienced Industry Professionals",
+  "Strong Academic & Corporate Partnerships",
+  "Customer-Centric Approach",
+  "Commitment to Innovation and Excellence",
+];
+
+const platforms = [
+  { icon: Users, name: "AADHYRA Talent Connect", desc: "Recruitment, Placement & Career Platform.", to: "/placement/talent-connect" },
+  { icon: Rocket, name: "AADHYRA Tech Partner", desc: "Software Development & IT Services Platform.", to: "/placement/tech-partner" },
+  { icon: Sparkles, name: "AADHYRA AI Lab", desc: "Artificial Intelligence, Automation & Innovation Platform.", to: "/placement/ai-lab" },
+  { icon: HandHeart, name: "AADHYRA Health Connect", desc: "Healthcare Recruitment, Medical Training & Healthcare Solutions Platform.", to: "/placement/health-connect" },
+];
+
 
 const milestones = [
   { year: "2019", title: "The Beginning", desc: "Founded with a single classroom and a big dream — to make every learner employable." },
