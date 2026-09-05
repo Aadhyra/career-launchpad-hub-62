@@ -21,10 +21,42 @@ const stats = [
 ];
 
 const values = [
-  { icon: Target, title: "Our Mission", description: "To bridge the gap between education and industry through practical, job-ready training that transforms careers and uplifts families." },
-  { icon: Eye, title: "Our Vision", description: "To become India's most trusted multi-domain training and placement platform — building skilled professionals across IT, Healthcare, HR & Creative industries." },
-  { icon: Heart, title: "Our Values", description: "Excellence in training, integrity in placement, empathy in mentorship — every student's success is a promise we keep." },
+  { icon: Target, title: "Our Mission", description: "To empower businesses with innovative technology solutions while enabling students, professionals and organizations through quality education, industry-focused training, internships, recruitment, placement services and digital transformation." },
+  { icon: Eye, title: "Our Vision", description: "To become one of India's most trusted technology and talent ecosystem companies by connecting innovation, education, healthcare and employment through world-class digital solutions, strategic partnerships and continuous innovation." },
+  { icon: Heart, title: "Our Values", description: "Innovation & creativity, integrity & transparency, excellence in quality, customer success, continuous learning, collaboration, accountability and social responsibility." },
 ];
+
+const coreValues = [
+  "Innovation & Creativity",
+  "Integrity & Transparency",
+  "Excellence in Quality",
+  "Customer Success",
+  "Continuous Learning",
+  "Collaboration & Teamwork",
+  "Accountability",
+  "Social Responsibility",
+];
+
+const whyChoose = [
+  "Comprehensive IT & Software Development Services",
+  "AI-Powered Business Solutions",
+  "Industry-Oriented Training Programs",
+  "Real-Time Internship Opportunities",
+  "End-to-End Recruitment & Placement Services",
+  "Healthcare Technology & Workforce Solutions",
+  "Experienced Industry Professionals",
+  "Strong Academic & Corporate Partnerships",
+  "Customer-Centric Approach",
+  "Commitment to Innovation and Excellence",
+];
+
+const platforms = [
+  { icon: Users, name: "AADHYRA Talent Connect", desc: "Recruitment, Placement & Career Platform.", to: "/placement/talent-connect" },
+  { icon: Rocket, name: "AADHYRA Tech Partner", desc: "Software Development & IT Services Platform.", to: "/placement/tech-partner" },
+  { icon: Sparkles, name: "AADHYRA AI Lab", desc: "Artificial Intelligence, Automation & Innovation Platform.", to: "/placement/ai-lab" },
+  { icon: HandHeart, name: "AADHYRA Health Connect", desc: "Healthcare Recruitment, Medical Training & Healthcare Solutions Platform.", to: "/placement/health-connect" },
+];
+
 
 const milestones = [
   { year: "2019", title: "The Beginning", desc: "Founded with a single classroom and a big dream — to make every learner employable." },
@@ -321,6 +353,85 @@ const AboutPage = () => {
             </div>
           </div>
         </section>
+
+        {/* Platforms */}
+        <section className="py-16 lg:py-20 bg-muted/30">
+          <div className="container">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">Our Ecosystem</Badge>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-3">
+                Flagship platforms working together
+              </h2>
+              <p className="text-muted-foreground">
+                One company. Multiple solutions. Endless possibilities.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {platforms.map((p) => {
+                const I = p.icon;
+                return (
+                  <Link key={p.name} to={p.to} className="bg-card border rounded-2xl p-6 hover:shadow-card-hover transition block">
+                    <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mb-4">
+                      <I className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="font-heading font-bold text-foreground mb-2">{p.name}</h3>
+                    <p className="text-sm text-muted-foreground">{p.desc}</p>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Core values + Why choose */}
+        <section className="py-16 lg:py-20">
+          <div className="container grid lg:grid-cols-2 gap-10">
+            <div className="bg-card border rounded-3xl p-8">
+              <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">Core Values</Badge>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6">What we stand for</h2>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {coreValues.map((v) => (
+                  <div key={v} className="flex items-center gap-2 text-foreground">
+                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span className="text-sm">{v}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="bg-card border rounded-3xl p-8">
+              <Badge className="mb-3 bg-accent/10 text-accent border-accent/20">Why Choose AADHYRA</Badge>
+              <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6">Built for businesses and talent</h2>
+              <ul className="space-y-3">
+                {whyChoose.map((w) => (
+                  <li key={w} className="flex items-start gap-2 text-muted-foreground">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span className="text-sm">{w}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Commitment */}
+        <section className="py-16 lg:py-20 gradient-hero text-primary-foreground">
+          <div className="container max-w-4xl text-center">
+            <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur">Our Commitment</Badge>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
+              We don't simply provide services — we build long-term partnerships
+            </h2>
+            <p className="text-primary-foreground/90 leading-relaxed mb-4">
+              Every software solution we develop, every student we train, every internship we offer, every candidate we
+              place, every healthcare partnership we support and every innovation we create reflects our commitment to
+              quality, trust and excellence.
+            </p>
+            <p className="text-lg font-semibold">
+              Innovating Technology • Empowering People • Transforming Businesses
+            </p>
+          </div>
+        </section>
+
+
 
         {/* Testimonials */}
         <section className="py-16 lg:py-20 bg-gradient-to-br from-primary/5 to-transparent">
