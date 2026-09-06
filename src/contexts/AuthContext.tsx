@@ -103,17 +103,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     );
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
-      
+
       if (session?.user) {
-        fetchProfile(session.user.id);
-        checkUserRole(session.user.id);
+        // Resolve the role BEFORE releasing loading, otherwise role-protected
+        // routes redirect away while the role lookup is still in flight.
+        await Promise.all([
+          fetchProfile(session.user.id),
+          checkUserRole(session.user.id),
+        ]);
       }
-      
+
       setLoading(false);
     });
+
 
     return () => subscription.unsubscribe();
   }, []);
