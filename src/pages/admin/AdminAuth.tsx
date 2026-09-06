@@ -152,7 +152,18 @@ const AdminAuth = () => {
               </Button>
             </form>
 
+            <div className="mt-4 text-center">
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="text-sm text-primary hover:underline"
+              >
+                Forgot password?
+              </button>
+            </div>
+
             <div className="mt-6 text-center space-y-2">
+
               <Link to="/auth" className="text-sm text-muted-foreground hover:text-primary transition-colors block">
                 Student Login →
               </Link>
