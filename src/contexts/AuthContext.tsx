@@ -62,12 +62,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const { data, error } = await supabase
         .from('user_roles')
         .select('role')
-        .eq('user_id', userId)
-        .maybeSingle();
-      
-      if (data && !error) {
-        setUserRole(data.role);
-        setIsAdmin(data.role === 'admin');
+        .eq('user_id', userId);
+
+      if (data && data.length && !error) {
+        const roles = data.map((r) => r.role as string);
+        const primary = roles.includes('admin')
+          ? 'admin'
+          : roles.includes('employer')
+            ? 'employer'
+            : roles[0];
+        setUserRole(primary);
+        setIsAdmin(roles.includes('admin'));
       } else {
         setUserRole(null);
         setIsAdmin(false);
@@ -77,6 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setIsAdmin(false);
     }
   };
+
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -97,17 +103,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     );
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
-      
+
       if (session?.user) {
-        fetchProfile(session.user.id);
-        checkUserRole(session.user.id);
+        // Resolve the role BEFORE releasing loading, otherwise role-protected
+        // routes redirect away while the role lookup is still in flight.
+        await Promise.all([
+          fetchProfile(session.user.id),
+          checkUserRole(session.user.id),
+        ]);
       }
-      
+
       setLoading(false);
     });
+
 
     return () => subscription.unsubscribe();
   }, []);
