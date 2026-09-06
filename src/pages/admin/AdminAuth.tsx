@@ -21,9 +21,25 @@ const AdminAuth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { signIn, user, isAdmin, loading: authLoading } = useAuth();
+  const { signIn, user, isAdmin, loading: authLoading, resetPassword } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast({ title: 'Enter your email', description: 'Type your admin email above, then click again.', variant: 'destructive' });
+      return;
+    }
+    setLoading(true);
+    const { error } = await resetPassword(email);
+    setLoading(false);
+    toast({
+      title: error ? 'Could not send reset link' : 'Reset link sent',
+      description: error ? error.message : `Check ${email} for a link to set a new password.`,
+      variant: error ? 'destructive' : 'default',
+    });
+  };
+
 
   useEffect(() => {
     if (user && !authLoading) {
