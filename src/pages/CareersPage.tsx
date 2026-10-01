@@ -32,6 +32,18 @@ interface JobPosting {
   skills: string[] | null;
 }
 
+const featuredOpenings: JobPosting[] = [
+  { id: "featured-java", title: "Java Full Stack Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Java", "Spring Boot", "React", "SQL"] },
+  { id: "featured-python", title: "Python Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Python", "Django", "REST APIs", "SQL"] },
+  { id: "featured-analytics", title: "Data Analytics", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Power BI", "SQL", "Excel", "Python"] },
+  { id: "featured-scientist", title: "Data Scientist", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Python", "Machine Learning", "Statistics", "Data Modelling"] },
+  { id: "featured-mern", title: "MERN Stack Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["MongoDB", "Express", "React", "Node.js"] },
+  { id: "featured-dotnet", title: ".NET Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: [".NET", "C#", "ASP.NET Core", "SQL Server"] },
+  { id: "featured-wordpress", title: "WordPress Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["WordPress", "PHP", "WooCommerce", "JavaScript"] },
+  { id: "featured-bdm", title: "Business Development Manager", department: "Digital Marketing", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 1, experience_max: 7, description: null, skills: ["Sales", "Lead Generation", "Client Relations", "Negotiation"] },
+  { id: "featured-hr", title: "Human Resources", department: "HR", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Recruitment", "HR Operations", "Employee Relations", "Payroll"] },
+];
+
 const formatSalary = (amount: number | null) => {
   if (!amount) return null;
   if (amount >= 100000) {
@@ -69,7 +81,14 @@ const CareersPage = () => {
     fetchJobs();
   }, [selectedDept]);
 
-  const filteredJobs = jobs.filter(job => 
+  const availableJobs = [
+    ...featuredOpenings.filter((featured) => (
+      selectedDept === "all" || featured.department === selectedDept
+    ) && !jobs.some((job) => job.title.trim().toLowerCase() === featured.title.toLowerCase())),
+    ...jobs,
+  ];
+
+  const filteredJobs = availableJobs.filter(job => 
     job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     job.company_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
     job.location?.toLowerCase().includes(searchQuery.toLowerCase())
@@ -103,7 +122,7 @@ const CareersPage = () => {
               
               <div className="flex justify-center gap-8 mt-8">
                 <div className="text-center">
-                  <div className="text-4xl font-heading font-bold">{jobs.length}+</div>
+                  <div className="text-4xl font-heading font-bold">{availableJobs.length}+</div>
                   <div className="text-sm text-white/70">Active Jobs</div>
                 </div>
                 <div className="w-px bg-white/20" />
@@ -149,6 +168,11 @@ const CareersPage = () => {
         {/* Job Openings */}
         <section className="py-12 lg:py-16">
           <div className="container">
+            <div className="max-w-4xl mx-auto mb-8">
+              <Badge className="mb-3 bg-primary/10 text-primary border-primary/20">Now Hiring</Badge>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">Open Positions</h2>
+              <p className="text-muted-foreground mt-2">Explore current opportunities and apply for the role that matches your skills.</p>
+            </div>
             {loading ? (
               <div className="flex items-center justify-center h-64">
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
