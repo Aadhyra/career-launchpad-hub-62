@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {
   Target, Eye, Heart, Award, Users, Building2, GraduationCap, Briefcase,
   Quote, Sparkles, ArrowRight, CheckCircle2, Star, Trophy, HandHeart, Rocket,
+  Code2, Smartphone, Cloud, Bot, BarChart3, ShieldCheck, Settings2, Database,
 } from "lucide-react";
 import shikshaLogo from "@/assets/aadhyra-logo.png";
 import teamImage from "@/assets/about-team.jpg";
@@ -55,6 +56,17 @@ const platforms = [
   { icon: Rocket, name: "AADHYRA Tech Partner", desc: "Software Development & IT Services Platform.", to: "/placement/tech-partner" },
   { icon: Sparkles, name: "AADHYRA AI Lab", desc: "Artificial Intelligence, Automation & Innovation Platform.", to: "/placement/ai-lab" },
   { icon: HandHeart, name: "AADHYRA Health Connect", desc: "Healthcare Recruitment, Medical Training & Healthcare Solutions Platform.", to: "/placement/health-connect" },
+];
+
+const itServices = [
+  { icon: Code2, title: "Custom Software Development", description: "Secure, scalable business applications designed around your workflows and growth goals." },
+  { icon: Smartphone, title: "Web & Mobile Applications", description: "Modern websites, portals and mobile experiences built for performance and usability." },
+  { icon: Bot, title: "AI & Automation", description: "Practical AI assistants, workflow automation and intelligent tools that improve productivity." },
+  { icon: Cloud, title: "Cloud & DevOps", description: "Cloud migration, deployment automation, monitoring and infrastructure support." },
+  { icon: BarChart3, title: "Data Analytics", description: "Dashboards, reporting systems and business intelligence that turn data into decisions." },
+  { icon: ShieldCheck, title: "Cybersecurity", description: "Security assessments, application protection and best-practice guidance for digital operations." },
+  { icon: Database, title: "CRM & Enterprise Solutions", description: "Connected CRM, ERP and internal systems that centralise teams, customers and operations." },
+  { icon: Settings2, title: "Maintenance & Support", description: "Reliable upgrades, issue resolution, performance optimisation and ongoing technical support." },
 ];
 
 
@@ -253,6 +265,43 @@ const AboutPage = () => {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* IT services */}
+        <section className="py-16 lg:py-20 bg-muted/30">
+          <div className="container">
+            <div className="max-w-3xl mb-12">
+              <Badge className="mb-3 bg-tech/10 text-tech border-tech/20">IT Services</Badge>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Technology solutions built for real business growth
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                AADHYRA combines product engineering, cloud, AI, data and security expertise to help startups,
+                institutions and enterprises build, modernise and support reliable digital systems.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {itServices.map((service) => {
+                const Icon = service.icon;
+                return (
+                  <div key={service.title} className="bg-card border rounded-lg p-6 hover:shadow-card-hover transition-all duration-300">
+                    <div className="h-11 w-11 rounded-lg bg-tech/10 text-tech flex items-center justify-center mb-4">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-heading font-bold text-foreground mb-2">{service.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-8">
+              <Link to="/services">
+                <Button variant="hero" className="gap-2">
+                  Explore IT Services <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
