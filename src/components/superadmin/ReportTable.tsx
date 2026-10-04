@@ -87,6 +87,9 @@ const ReportTable = ({ report }: { report: ReportConfig }) => {
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
+    const refresh = () => void load();
+    const interval = window.setInterval(refresh, 30000);
+    window.addEventListener("focus", refresh);
     const channel = supabase
       .channel(`superadmin-report-${report.table}`)
       .on(
@@ -101,6 +104,8 @@ const ReportTable = ({ report }: { report: ReportConfig }) => {
 
     return () => {
       if (timer) clearTimeout(timer);
+      window.clearInterval(interval);
+      window.removeEventListener("focus", refresh);
       void supabase.removeChannel(channel);
     };
   }, [load, report.table]);

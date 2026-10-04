@@ -170,6 +170,9 @@ const SuperAdminDashboard = () => {
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
+    const refresh = () => setRefreshKey((key) => key + 1);
+    const interval = window.setInterval(refresh, 30000);
+    window.addEventListener("focus", refresh);
     const channel = supabase
       .channel("superadmin-live-kpis")
       .on(
@@ -185,6 +188,8 @@ const SuperAdminDashboard = () => {
 
     return () => {
       if (timer) clearTimeout(timer);
+      window.clearInterval(interval);
+      window.removeEventListener("focus", refresh);
       void supabase.removeChannel(channel);
     };
   }, []);

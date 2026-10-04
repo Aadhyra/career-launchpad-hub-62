@@ -42,6 +42,9 @@ const ReportsCenter = () => {
     };
 
     void loadSummary();
+    const interval = window.setInterval(() => void loadSummary(), 30000);
+    const refresh = () => void loadSummary();
+    window.addEventListener("focus", refresh);
     const channel = supabase
       .channel("reports-center-summary")
       .on("postgres_changes", { event: "*", schema: "public" }, (payload) => {
@@ -54,6 +57,8 @@ const ReportsCenter = () => {
     return () => {
       active = false;
       if (timer) clearTimeout(timer);
+      window.clearInterval(interval);
+      window.removeEventListener("focus", refresh);
       void supabase.removeChannel(channel);
     };
   }, []);
