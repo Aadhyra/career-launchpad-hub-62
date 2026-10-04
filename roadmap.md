@@ -5,5 +5,5 @@
 - [x] Add nine requested Careers openings with deduplication
 - [x] Verify desktop and mobile presentation
 
-- [ ] Connect Super Admin KPIs and Reports Center to live applications, enrollments, and job postings
-- [ ] Verify live counts, reports, and filtering
+- [x] Connect Super Admin KPIs and Reports Center to live applications, enrollments, and job postings
+- [x] Verify live counts, reports, and filtering

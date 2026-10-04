@@ -322,8 +322,8 @@ export const REPORTS: ReportConfig[] = [
   },
   {
     id: "applications",
-    label: "Lead & Enquiry Conversion Report",
-    group: "CRM",
+    label: "Student Applications Report",
+    group: "Admissions",
     table: "applications",
     dateField: "created_at",
     columns: [
