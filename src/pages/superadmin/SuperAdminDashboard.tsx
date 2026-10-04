@@ -17,7 +17,7 @@ import { rangeStart, type DateRangeKey } from "@/components/superadmin/ReportTab
 
 type Counts = Record<string, number>;
 
-const COUNT_QUERIES: { key: string; table: string; dateField?: string; filter?: [string, string] }[] = [
+const COUNT_QUERIES: { key: string; table: string; dateField?: string; filter?: [string, string | boolean] }[] = [
   { key: "users", table: "profiles", dateField: "created_at" },
   { key: "roles", table: "user_roles", dateField: "created_at" },
   { key: "companies", table: "employers", dateField: "created_at" },
@@ -26,8 +26,8 @@ const COUNT_QUERIES: { key: string; table: string; dateField?: string; filter?: 
   { key: "enrollments", table: "enrollments", dateField: "enrolled_at" },
   { key: "activeEnrollments", table: "enrollments", dateField: "enrolled_at", filter: ["status", "active"] },
   { key: "completedEnrollments", table: "enrollments", dateField: "enrolled_at", filter: ["status", "completed"] },
-  { key: "publishedJobs", table: "job_postings", dateField: "created_at", filter: ["is_active", "true"] },
-  { key: "employerJobs", table: "jobs", dateField: "created_at", filter: ["is_active", "true"] },
+  { key: "publishedJobs", table: "job_postings", dateField: "created_at", filter: ["is_active", true] },
+  { key: "employerJobs", table: "jobs", dateField: "created_at", filter: ["is_active", true] },
   { key: "jobApplications", table: "job_applications", dateField: "applied_at" },
   { key: "selected", table: "job_applications", dateField: "applied_at", filter: ["status", "selected"] },
   { key: "shortlisted", table: "job_applications", dateField: "applied_at", filter: ["status", "shortlisted"] },

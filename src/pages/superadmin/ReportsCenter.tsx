@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { REPORTS, REPORT_GROUPS } from "@/lib/superadmin/reports";
 import ReportTable from "@/components/superadmin/ReportTable";
-import { BarChart3, BookOpen, Briefcase, FileStack, Loader2 } from "lucide-react";
+import { BarChart3, BookOpen, Briefcase, FileStack, Loader2, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const ReportsCenter = () => {
