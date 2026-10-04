@@ -85,6 +85,26 @@ const ReportTable = ({ report }: { report: ReportConfig }) => {
 
   useEffect(() => { load(); }, [load]);
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const channel = supabase
+      .channel(`superadmin-report-${report.table}`)
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: report.table },
+        () => {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => void load(), 250);
+        },
+      )
+      .subscribe();
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      void supabase.removeChannel(channel);
+    };
+  }, [load, report.table]);
+
   const fetchAll = async (): Promise<Record<string, unknown>[]> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let q: any = (supabase as any).from(report.table).select("*").order(sortKey, { ascending: asc, nullsFirst: false }).limit(5000);

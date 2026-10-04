@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { REPORTS, REPORT_GROUPS } from "@/lib/superadmin/reports";
 import ReportTable from "@/components/superadmin/ReportTable";
-import { BarChart3, Search } from "lucide-react";
+import { BarChart3, BookOpen, Briefcase, FileStack, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const ReportsCenter = () => {
@@ -12,6 +13,50 @@ const ReportsCenter = () => {
   const [q, setQ] = useState("");
   const active = REPORTS.find((r) => r.id === activeId)!;
   const filtered = REPORTS.filter((r) => r.label.toLowerCase().includes(q.toLowerCase()) || r.group.toLowerCase().includes(q.toLowerCase()));
+  const [summary, setSummary] = useState({ applications: 0, enrollments: 0, jobPostings: 0 });
+  const [summaryLoading, setSummaryLoading] = useState(true);
+  const [summaryError, setSummaryError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
+    const loadSummary = async () => {
+      setSummaryLoading(true);
+      const [applications, enrollments, publishedJobs, employerJobs] = await Promise.all([
+        supabase.from("applications").select("id", { count: "exact", head: true }),
+        supabase.from("enrollments").select("id", { count: "exact", head: true }),
+        supabase.from("job_postings").select("id", { count: "exact", head: true }).eq("is_active", true),
+        supabase.from("jobs").select("id", { count: "exact", head: true }).eq("is_active", true),
+      ]);
+      if (!active) return;
+      const errors = [applications.error, enrollments.error, publishedJobs.error, employerJobs.error]
+        .flatMap((error) => error?.message ? [error.message] : []);
+      setSummaryError(Array.from(new Set(errors)).join(" · "));
+      setSummary({
+        applications: applications.count ?? 0,
+        enrollments: enrollments.count ?? 0,
+        jobPostings: (publishedJobs.count ?? 0) + (employerJobs.count ?? 0),
+      });
+      setSummaryLoading(false);
+    };
+
+    void loadSummary();
+    const channel = supabase
+      .channel("reports-center-summary")
+      .on("postgres_changes", { event: "*", schema: "public" }, (payload) => {
+        if (!["applications", "enrollments", "job_postings", "jobs"].includes(payload.table)) return;
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => void loadSummary(), 250);
+      })
+      .subscribe();
+
+    return () => {
+      active = false;
+      if (timer) clearTimeout(timer);
+      void supabase.removeChannel(channel);
+    };
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -23,6 +68,32 @@ const ReportsCenter = () => {
           {REPORTS.length} live reports with advanced filters, sorting, pagination and export to CSV, Excel, PDF or print.
         </p>
       </div>
+
+      <div className="grid gap-4 sm:grid-cols-3">
+        {[
+          { label: "Student Applications", value: summary.applications, icon: FileStack },
+          { label: "Course Enrollments", value: summary.enrollments, icon: BookOpen },
+          { label: "Active Job Postings", value: summary.jobPostings, icon: Briefcase },
+        ].map((item) => (
+          <Card key={item.label} className="p-5">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm text-muted-foreground">{item.label}</p>
+                <p className="mt-1 font-heading text-2xl font-bold text-foreground">
+                  {summaryLoading ? <Loader2 className="h-5 w-5 animate-spin text-primary" /> : item.value.toLocaleString("en-IN")}
+                </p>
+              </div>
+              <item.icon className="h-6 w-6 text-primary" />
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      {summaryError && (
+        <Card className="border-destructive/40 bg-destructive/5 p-4 text-sm text-destructive">
+          Live summary unavailable: {summaryError}
+        </Card>
+      )}
 
       <div className="grid lg:grid-cols-[300px_1fr] gap-5 items-start">
         <Card className="p-4 lg:sticky lg:top-20">

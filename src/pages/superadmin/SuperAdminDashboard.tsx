@@ -26,7 +26,8 @@ const COUNT_QUERIES: { key: string; table: string; dateField?: string; filter?: 
   { key: "enrollments", table: "enrollments", dateField: "enrolled_at" },
   { key: "activeEnrollments", table: "enrollments", dateField: "enrolled_at", filter: ["status", "active"] },
   { key: "completedEnrollments", table: "enrollments", dateField: "enrolled_at", filter: ["status", "completed"] },
-  { key: "jobs", table: "job_postings", dateField: "created_at" },
+  { key: "publishedJobs", table: "job_postings", dateField: "created_at", filter: ["is_active", "true"] },
+  { key: "employerJobs", table: "jobs", dateField: "created_at", filter: ["is_active", "true"] },
   { key: "jobApplications", table: "job_applications", dateField: "applied_at" },
   { key: "selected", table: "job_applications", dateField: "applied_at", filter: ["status", "selected"] },
   { key: "shortlisted", table: "job_applications", dateField: "applied_at", filter: ["status", "shortlisted"] },
@@ -35,6 +36,7 @@ const COUNT_QUERIES: { key: string; table: string; dateField?: string; filter?: 
   { key: "interviews", table: "interview_attempts", dateField: "created_at" },
   { key: "interviewsCleared", table: "interview_attempts", dateField: "created_at", filter: ["status", "completed"] },
   { key: "certificates", table: "certificates", dateField: "created_at" },
+  { key: "studentApplications", table: "applications", dateField: "created_at" },
   { key: "leads", table: "applications", dateField: "created_at" },
   { key: "pendingLeads", table: "applications", dateField: "created_at", filter: ["status", "new"] },
   { key: "campusDrives", table: "campus_drive_requests", dateField: "created_at" },
@@ -75,6 +77,8 @@ const SuperAdminDashboard = () => {
   });
   const [funnel, setFunnel] = useState<{ name: string; value: number }[]>([]);
   const [loading, setLoading] = useState(true);
+  const [dataError, setDataError] = useState("");
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const bounds = useMemo(() => {
     if (range === "custom") {
@@ -91,6 +95,7 @@ const SuperAdminDashboard = () => {
     let cancelled = false;
     const run = async () => {
       setLoading(true);
+      setDataError("");
 
       const results = await Promise.all(
         COUNT_QUERIES.map(async (c) => {
@@ -99,8 +104,8 @@ const SuperAdminDashboard = () => {
           if (c.filter) q = q.eq(c.filter[0], c.filter[1]);
           if (c.dateField && bounds.gte) q = q.gte(c.dateField, bounds.gte);
           if (c.dateField && bounds.lte) q = q.lte(c.dateField, bounds.lte);
-          const { count } = await q;
-          return [c.key, count ?? 0] as const;
+          const { count, error } = await q;
+          return { key: c.key, count: count ?? 0, error: error?.message };
         })
       );
 
@@ -133,7 +138,12 @@ const SuperAdminDashboard = () => {
       const appRows = (apps.data ?? []) as { applied_at: string; status: string }[];
       const stage = (s: string) => appRows.filter((a) => a.status === s).length;
 
-      setCounts(Object.fromEntries(results));
+      const errors = results.flatMap((result) => result.error ? [result.error] : []);
+      const supportingErrors = [pay.error, proj.error, prof.error, enr.error, apps.error, certs.error]
+        .flatMap((error) => error?.message ? [error.message] : []);
+      const allErrors = Array.from(new Set([...errors, ...supportingErrors]));
+      setDataError(allErrors.join(" · "));
+      setCounts(Object.fromEntries(results.map(({ key, count }) => [key, count])));
       setRevenue({
         total: paid.reduce((s, r) => s + Number(r.amount ?? 0), 0),
         pending: payRows.filter((r) => ["created", "pending", "failed"].includes(String(r.status))).reduce((s, r) => s + Number(r.amount ?? 0), 0),
@@ -156,7 +166,28 @@ const SuperAdminDashboard = () => {
     };
     run();
     return () => { cancelled = true; };
-  }, [bounds]);
+  }, [bounds, refreshKey]);
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const channel = supabase
+      .channel("superadmin-live-kpis")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public" },
+        (payload) => {
+          if (!["applications", "enrollments", "job_postings", "jobs"].includes(payload.table)) return;
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => setRefreshKey((key) => key + 1), 250);
+        },
+      )
+      .subscribe();
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      void supabase.removeChannel(channel);
+    };
+  }, []);
 
   const kpis = [
     { label: "Total Users", value: counts.users, icon: Users, to: "students", color: "text-tech" },
@@ -165,9 +196,11 @@ const SuperAdminDashboard = () => {
     { label: "Colleges", value: counts.colleges, icon: School, to: "colleges", color: "text-design" },
     { label: "Admin & Role Users", value: counts.roles, icon: UserCheck, to: "roles", color: "text-accent" },
     { label: "Total Courses", value: counts.courses, icon: BookOpen, to: "courses", color: "text-primary" },
+    { label: "Student Applications", value: counts.studentApplications, icon: FileStack, to: "leads", color: "text-marketing" },
+    { label: "Course Enrollments", value: counts.enrollments, icon: GraduationCap, to: "enrollments", color: "text-tech" },
     { label: "Active Enrollments", value: counts.activeEnrollments, icon: BookOpen, to: "enrollments", color: "text-healthcare" },
     { label: "Course Completions", value: counts.completedEnrollments, icon: Award, to: "enrollments", color: "text-marketing" },
-    { label: "Active Jobs", value: counts.jobs, icon: Briefcase, to: "job-postings", color: "text-tech" },
+    { label: "Active Job Postings", value: (counts.publishedJobs ?? 0) + (counts.employerJobs ?? 0), icon: Briefcase, to: "job-postings", color: "text-tech" },
     { label: "Job Applications", value: counts.jobApplications, icon: FileStack, to: "job-applications", color: "text-primary" },
     { label: "Shortlisted", value: counts.shortlisted, icon: UserCheck, to: "job-applications", color: "text-hr" },
     { label: "Total Placements", value: counts.selected, icon: TrendingUp, to: "job-applications", color: "text-healthcare" },
@@ -221,6 +254,12 @@ const SuperAdminDashboard = () => {
           </div>
         </div>
       </div>
+
+      {dataError && (
+        <Card className="border-destructive/40 bg-destructive/5 p-4 text-sm text-destructive">
+          Some live records could not be loaded. Refresh the page or check administrator data access. {dataError}
+        </Card>
+      )}
 
       {/* Revenue strip */}
       <div className="grid sm:grid-cols-3 gap-4">

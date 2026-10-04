@@ -114,7 +114,7 @@ export const NAV_GROUPS: NavGroup[] = [
     label: "CRM & Leads",
     icon: FileStack,
     items: [
-      { label: "Leads & Enquiries", slug: "leads", report: "applications" },
+      { label: "Student Applications", slug: "leads", report: "applications" },
       { label: "Contact Messages", slug: "contact-messages", report: "contact_messages" },
     ],
   },
