@@ -6,4 +6,4 @@
 - [x] Verify desktop and mobile presentation
 
 - [x] Connect Super Admin KPIs and Reports Center to live applications, enrollments, and job postings
-- [ ] Verify live counts, reports, and filtering
+- [x] Verify live counts, reports, and filtering
