@@ -98,6 +98,26 @@ const UpdatePassword = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {linkStatus === 'checking' ? (
+              <div className="flex justify-center py-8"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>
+            ) : linkStatus === 'invalid' ? (
+              <form onSubmit={handleResend} className="space-y-4">
+                <p className="text-sm text-destructive text-center">
+                  This reset link has expired or was already used. Each link works only once — request a new one below.
+                </p>
+                <div className="space-y-2">
+                  <Label htmlFor="reset-email">Your email</Label>
+                  <Input id="reset-email" type="email" value={resetEmail} onChange={(e) => setResetEmail(e.target.value)} required />
+                </div>
+                <Button type="submit" className="w-full" disabled={sending}>
+                  {sending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Send new reset link
+                </Button>
+                <Button type="button" variant="outline" className="w-full" onClick={() => navigate('/admin/login')}>
+                  Back to admin login
+                </Button>
+              </form>
+            ) : (
             <form onSubmit={handleUpdate} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="new-password">New Password</Label>
