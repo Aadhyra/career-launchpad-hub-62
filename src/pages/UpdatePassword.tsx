@@ -156,6 +156,7 @@ const UpdatePassword = () => {
                 Update Password
               </Button>
             </form>
+            )}
           </CardContent>
         </Card>
       </div>
