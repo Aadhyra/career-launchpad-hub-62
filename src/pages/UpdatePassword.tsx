@@ -13,18 +13,41 @@ const UpdatePassword = () => {
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const { updatePassword } = useAuth();
+  const [linkStatus, setLinkStatus] = useState<'checking' | 'ready' | 'invalid'>('checking');
+  const [resetEmail, setResetEmail] = useState('');
+  const [sending, setSending] = useState(false);
+  const { updatePassword, resetPassword } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if the user arrived here via a password reset link
-    supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event == "PASSWORD_RECOVERY") {
-        console.log("Password recovery event triggered");
-      }
+    const params = new URLSearchParams(window.location.hash.replace(/^#/, '') + '&' + window.location.search.replace(/^\?/, ''));
+    if (params.get('error') || params.get('error_code')) {
+      setLinkStatus('invalid');
+      return;
+    }
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'PASSWORD_RECOVERY' || session) setLinkStatus('ready');
     });
+    const timer = setTimeout(async () => {
+      const { data } = await supabase.auth.getSession();
+      setLinkStatus(data.session ? 'ready' : 'invalid');
+    }, 1500);
+    return () => { subscription.unsubscribe(); clearTimeout(timer); };
   }, []);
+
+  const handleResend = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resetEmail) return;
+    setSending(true);
+    const { error } = await resetPassword(resetEmail);
+    setSending(false);
+    toast({
+      title: error ? 'Could not send link' : 'New link sent',
+      description: error ? error.message : `Check ${resetEmail} and open the newest email only once.`,
+      variant: error ? 'destructive' : 'default',
+    });
+  };
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,8 +55,8 @@ const UpdatePassword = () => {
       toast({ title: 'Error', description: 'Passwords do not match.', variant: 'destructive' });
       return;
     }
-    if (password.length < 6) {
-      toast({ title: 'Error', description: 'Password must be at least 6 characters.', variant: 'destructive' });
+    if (password.length < 8) {
+      toast({ title: 'Error', description: 'Password must be at least 8 characters.', variant: 'destructive' });
       return;
     }
 
@@ -42,11 +65,17 @@ const UpdatePassword = () => {
     setLoading(false);
 
     if (error) {
+      const msg = error.message.toLowerCase();
       toast({
         title: 'Failed to update password',
-        description: error.message,
+        description: msg.includes('session')
+          ? 'This reset link has expired or was already used. Request a new link below.'
+          : msg.includes('weak') || msg.includes('guess')
+            ? 'This password is too common. Use a longer mix of letters, numbers and symbols.'
+            : error.message,
         variant: 'destructive',
       });
+      if (msg.includes('session')) setLinkStatus('invalid');
     } else {
       toast({
         title: 'Password Updated',
@@ -69,6 +98,26 @@ const UpdatePassword = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {linkStatus === 'checking' ? (
+              <div className="flex justify-center py-8"><Loader2 className="h-6 w-6 animate-spin text-primary" /></div>
+            ) : linkStatus === 'invalid' ? (
+              <form onSubmit={handleResend} className="space-y-4">
+                <p className="text-sm text-destructive text-center">
+                  This reset link has expired or was already used. Each link works only once — request a new one below.
+                </p>
+                <div className="space-y-2">
+                  <Label htmlFor="reset-email">Your email</Label>
+                  <Input id="reset-email" type="email" value={resetEmail} onChange={(e) => setResetEmail(e.target.value)} required />
+                </div>
+                <Button type="submit" className="w-full" disabled={sending}>
+                  {sending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  Send new reset link
+                </Button>
+                <Button type="button" variant="outline" className="w-full" onClick={() => navigate('/admin/login')}>
+                  Back to admin login
+                </Button>
+              </form>
+            ) : (
             <form onSubmit={handleUpdate} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="new-password">New Password</Label>
@@ -107,6 +156,7 @@ const UpdatePassword = () => {
                 Update Password
               </Button>
             </form>
+            )}
           </CardContent>
         </Card>
       </div>
