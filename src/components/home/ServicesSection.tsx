@@ -1,81 +1,44 @@
 import { Link } from "react-router-dom";
-import { Code2, Brain, GraduationCap, Rocket, Briefcase, HeartPulse, ArrowRight } from "lucide-react";
+import { Code2, Brain, GraduationCap, Rocket, Briefcase, School, TrendingUp, ArrowRight } from "lucide-react";
+import Reveal from "./Reveal";
 
-const groups = [
-  {
-    icon: Code2,
-    title: "IT Services",
-    href: "/services",
-    items: ["Custom Software Development", "Website Development", "Mobile App Development", "Cloud Solutions", "UI/UX Design", "Maintenance & Support"],
-  },
-  {
-    icon: Brain,
-    title: "AI Solutions",
-    href: "/services/ai",
-    items: ["AI Chatbots", "AI Automation", "AI Business Solutions", "AI Research", "Machine Learning", "Data Analytics"],
-  },
-  {
-    icon: GraduationCap,
-    title: "Corporate Training",
-    href: "/courses",
-    items: ["Java Full Stack", "Python", "MERN Stack", "Data Science", "Artificial Intelligence", "Cloud Computing", "Digital Marketing", "HR Training", "Soft Skills"],
-  },
-  {
-    icon: Rocket,
-    title: "Internship Programs",
-    href: "/internships",
-    items: ["Live Industry Projects", "Mentor Guidance", "Internship Certificate", "Placement Assistance", "Resume Building", "Interview Preparation"],
-  },
-  {
-    icon: Briefcase,
-    title: "Placement Services",
-    href: "/placement",
-    items: ["Campus Recruitment", "Freshers Hiring", "Experienced Hiring", "Recruitment Process Outsourcing", "HR Consulting"],
-  },
-  {
-    icon: HeartPulse,
-    title: "Healthcare Solutions",
-    href: "/placement/health-connect",
-    items: ["Healthcare Recruitment", "Medical Training", "Hospital Partnerships"],
-  },
+const services = [
+  { icon: Code2, title: "Software Development", desc: "Custom web, mobile and enterprise software built to scale.", href: "/services" },
+  { icon: Brain, title: "AI Solutions", desc: "Chatbots, automation and machine learning for smarter business.", href: "/services/ai" },
+  { icon: GraduationCap, title: "Corporate Training", desc: "Industry-designed programs in tech, data, marketing and HR.", href: "/courses" },
+  { icon: Rocket, title: "Professional Internships", desc: "Live projects, mentor guidance and verified certificates.", href: "/internships" },
+  { icon: Briefcase, title: "Recruitment Services", desc: "Fresher and experienced hiring, RPO and HR consulting.", href: "/placement" },
+  { icon: School, title: "Campus Hiring", desc: "End-to-end campus drives with colleges across India.", href: "/campus-drive" },
+  { icon: TrendingUp, title: "Career Development", desc: "Resume building, interview prep and placement support.", href: "/careers" },
 ];
 
 const ServicesSection = () => (
-  <section id="services" className="py-20 lg:py-28 bg-muted/40 scroll-mt-20">
+  <section id="what-we-do" className="scroll-mt-20 bg-muted/40 py-16 lg:py-24">
     <div className="container">
-      <div className="text-center max-w-2xl mx-auto mb-14">
-        <span className="text-primary font-semibold text-sm uppercase tracking-wider">Our Services</span>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3">
-          Everything your business and career needs
+      <Reveal className="mx-auto mb-12 max-w-2xl text-center">
+        <span className="text-sm font-semibold uppercase tracking-wider text-accent">What We Do</span>
+        <h2 className="mt-3 font-heading text-3xl font-bold text-foreground md:text-4xl">
+          Technology, talent and growth — under one roof
         </h2>
-      </div>
+      </Reveal>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {groups.map(({ icon: Icon, title, items, href }) => (
-          <Link
-            key={title}
-            to={href}
-            className="group relative rounded-3xl border border-border/70 bg-card/70 backdrop-blur-md p-7 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1.5 flex flex-col"
-          >
-            <div className="flex items-center gap-4 mb-5">
-              <div className="h-12 w-12 rounded-xl gradient-primary flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
-                <Icon className="h-6 w-6 text-primary-foreground" />
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map(({ icon: Icon, title, desc, href }, i) => (
+          <Reveal key={title} delay={(i % 4) * 90} className={i === 6 ? "sm:col-span-2 lg:col-span-1" : ""}>
+            <Link
+              to={href}
+              className="group flex h-full flex-col rounded-2xl border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-card-hover"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
+                <Icon className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
               </div>
-              <h3 className="font-heading text-lg font-bold text-foreground">{title}</h3>
-            </div>
-            <ul className="space-y-2 flex-1">
-              {items.map((i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
-                  {i}
-                </li>
-              ))}
-            </ul>
-            <span className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary">
-              Learn more
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </span>
-          </Link>
+              <h3 className="mt-5 font-heading text-lg font-semibold text-foreground">{title}</h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+              <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </Reveal>
         ))}
       </div>
     </div>

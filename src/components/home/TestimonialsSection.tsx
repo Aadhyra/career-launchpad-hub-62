@@ -3,28 +3,28 @@ import { Star, Quote } from "lucide-react";
 const testimonials = [
   {
     name: "Priya Sharma",
-    role: "Software Engineer · Chennai",
+    role: "Student → Software Engineer · Chennai",
     text: "The Java Full Stack program plus the live internship made all the difference. I went from unemployed to a ₹5.4 LPA offer in seven months.",
     rating: 5,
     color: "bg-primary",
   },
   {
     name: "Rahul Verma",
-    role: "HR Executive · Bengaluru",
+    role: "HR Intern → HR Executive · Bengaluru",
     text: "AADHYRA's HR internship gave me real recruitment tasks and a stipend. The placement team prepared me for every interview round.",
     rating: 5,
     color: "bg-accent",
   },
   {
     name: "Dr. Meera Nair",
-    role: "Hospital Administrator · Kochi",
+    role: "Professional · Hospital Administrator · Kochi",
     text: "We hired trained nursing staff through Health Connect. Verified profiles, fast turnaround and genuinely professional support.",
     rating: 5,
     color: "bg-healthcare",
   },
   {
     name: "Karthik Reddy",
-    role: "Founder, RetailOne · Hyderabad",
+    role: "Business Client · Founder, RetailOne · Hyderabad",
     text: "Their tech team delivered our web platform ahead of schedule. Clean code, great communication, and dependable support after launch.",
     rating: 5,
     color: "bg-design",
@@ -36,7 +36,7 @@ const TestimonialsSection = () => (
     <div className="container">
       <div className="text-center max-w-2xl mx-auto mb-14">
         <span className="text-primary font-semibold text-sm uppercase tracking-wider">Testimonials</span>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3">What people say about us</h2>
+        <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3">Success stories from students, interns, professionals & businesses</h2>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

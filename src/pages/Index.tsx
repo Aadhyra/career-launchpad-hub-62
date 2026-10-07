@@ -1,13 +1,14 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
-import WhyChooseSection from "@/components/home/WhyChooseSection";
+import VisionSection from "@/components/home/VisionSection";
 import ServicesSection from "@/components/home/ServicesSection";
+import WhyChooseSection from "@/components/home/WhyChooseSection";
+import StatsCounter from "@/components/home/StatsCounter";
 import ProductsSection from "@/components/home/ProductsSection";
 import PopularCourses from "@/components/home/PopularCourses";
 import InternshipHighlights from "@/components/home/InternshipHighlights";
 import PlacementServicesSection from "@/components/home/PlacementServicesSection";
-import StatsCounter from "@/components/home/StatsCounter";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import SuccessStorySection from "@/components/home/SuccessStorySection";
 import LatestJobsSection from "@/components/home/LatestJobsSection";
@@ -22,13 +23,14 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <WhyChooseSection />
+        <VisionSection />
         <ServicesSection />
+        <WhyChooseSection />
+        <StatsCounter />
         <ProductsSection />
         <PopularCourses />
         <InternshipHighlights />
         <PlacementServicesSection />
-        <StatsCounter />
         <TestimonialsSection />
         <SuccessStorySection />
         <LatestJobsSection />

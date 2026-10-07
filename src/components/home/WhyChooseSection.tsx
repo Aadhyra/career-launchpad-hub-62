@@ -1,42 +1,42 @@
-import { Code2, Brain, GraduationCap, Rocket, Briefcase, Building2 } from "lucide-react";
+import { BookOpen, FolderKanban, Briefcase, Building2, Award, LifeBuoy } from "lucide-react";
+import Reveal from "./Reveal";
 
 const items = [
-  { icon: Code2, title: "Software Development", desc: "Custom platforms, web & mobile products engineered for scale.", tint: "from-tech/20 to-primary/20" },
-  { icon: Brain, title: "AI Solutions", desc: "Chatbots, automation and ML models that cut cost and effort.", tint: "from-design/20 to-primary/20" },
-  { icon: GraduationCap, title: "Professional Training", desc: "Industry-designed programs delivered by working engineers.", tint: "from-accent/20 to-marketing/20" },
-  { icon: Rocket, title: "Internship Programs", desc: "Live industry projects with mentors, certificates and stipends.", tint: "from-healthcare/20 to-hr/20" },
-  { icon: Briefcase, title: "Placement Services", desc: "Campus hiring, fresher & lateral recruitment, RPO and HR consulting.", tint: "from-primary/20 to-tech/20" },
-  { icon: Building2, title: "Business Technology", desc: "Cloud, data, security and digital transformation for enterprises.", tint: "from-hr/20 to-healthcare/20" },
+  { icon: BookOpen, title: "Industry-focused learning", desc: "Curriculum designed with hiring partners and updated for today's market." },
+  { icon: FolderKanban, title: "Real-world projects", desc: "Work on live client projects that build a portfolio employers trust." },
+  { icon: Briefcase, title: "Career opportunities", desc: "Internships, placements and campus drives with our hiring network." },
+  { icon: Building2, title: "Business-focused technology", desc: "Software and AI built to solve real business problems and drive ROI." },
+  { icon: Award, title: "Experienced professionals", desc: "Learn from and work with engineers, recruiters and domain experts." },
+  { icon: LifeBuoy, title: "End-to-end support", desc: "From first enquiry to job offer or product launch, we stay with you." },
 ];
 
 const WhyChooseSection = () => (
-  <section className="py-20 lg:py-28">
-    <div className="container">
-      <div className="text-center max-w-2xl mx-auto mb-14">
-        <span className="text-primary font-semibold text-sm uppercase tracking-wider">Why AADHYRA</span>
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mt-3">
-          One partner for technology and talent
+  <section className="py-16 lg:py-24">
+    <div className="container grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <Reveal>
+        <span className="text-sm font-semibold uppercase tracking-wider text-accent">Why Choose Us</span>
+        <h2 className="mt-3 font-heading text-3xl font-bold text-foreground md:text-4xl">
+          One partner for technology, careers and business growth
         </h2>
-        <p className="text-muted-foreground mt-4">
-          Businesses trust us to build, students trust us to grow. Everything runs on a single integrated platform.
+        <p className="mt-4 text-muted-foreground">
+          Students trust us to grow, professionals trust us to advance, and businesses trust us to build. Everything
+          runs on a single integrated platform.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map(({ icon: Icon, title, desc, tint }) => (
-          <div
-            key={title}
-            className="group relative rounded-2xl border bg-card/70 backdrop-blur-sm p-7 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1.5 overflow-hidden"
-          >
-            <div className={`absolute inset-0 bg-gradient-to-br ${tint} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-            <div className="relative">
-              <div className="h-14 w-14 rounded-2xl gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                <Icon className="h-7 w-7 text-primary-foreground" />
+      <div className="grid gap-4 sm:grid-cols-2">
+        {items.map(({ icon: Icon, title, desc }, i) => (
+          <Reveal key={title} delay={(i % 2) * 100}>
+            <div className="flex h-full gap-4 rounded-2xl border bg-card p-5 shadow-card transition-shadow duration-300 hover:shadow-card-hover">
+              <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg gradient-primary">
+                <Icon className="h-5 w-5 text-primary-foreground" />
+              </span>
+              <div>
+                <h3 className="font-heading font-semibold text-foreground">{title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
               </div>
-              <h3 className="font-heading text-lg font-semibold text-foreground mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </div>
