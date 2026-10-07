@@ -10,4 +10,4 @@
 
 - [x] Restore admin sign-in for rgmprasanth@gmail.com
 
-- [ ] Redesign homepage (hero, vision, what we do, why us, stats, testimonials, final CTA)
+- [x] Redesign homepage (hero, vision, what we do, why us, stats, testimonials, final CTA)
