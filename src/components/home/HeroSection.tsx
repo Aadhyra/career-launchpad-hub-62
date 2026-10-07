@@ -16,9 +16,9 @@ const HeroSection = () => {
       <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-tech/30 blur-3xl" aria-hidden />
       <div className="absolute -bottom-40 right-0 h-[28rem] w-[28rem] rounded-full bg-accent/20 blur-3xl" aria-hidden />
 
-      <div className="container relative z-10 grid items-center gap-12 py-16 md:py-20 lg:grid-cols-2 lg:gap-14 lg:py-24">
+      <div className="container relative z-10 grid grid-cols-1 items-center gap-12 py-16 md:py-20 lg:grid-cols-2 lg:gap-14 lg:py-24">
         {/* Text */}
-        <div className="text-center lg:text-left animate-fade-in-up">
+        <div className="min-w-0 text-center lg:text-left animate-fade-in-up">
           <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 backdrop-blur-sm">
             <span className="h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
             <span className="truncate text-[11px] font-medium tracking-wide sm:text-xs">
@@ -72,7 +72,7 @@ const HeroSection = () => {
         </div>
 
         {/* Visual */}
-        <div className="relative mx-auto w-full max-w-xl animate-fade-in lg:max-w-none">
+        <div className="relative mx-auto w-full min-w-0 max-w-xl animate-fade-in lg:max-w-none">
           <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-tr from-accent/40 via-tech/30 to-transparent blur-2xl" aria-hidden />
           <div className="relative overflow-hidden rounded-[1.75rem] border border-primary-foreground/15 shadow-2xl">
             <img
