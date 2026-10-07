@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { GraduationCap, Rocket, FolderCheck, Handshake } from "lucide-react";
 
-const stats = [
-  { value: 1000, suffix: "+", label: "Students Trained" },
-  { value: 500, suffix: "+", label: "Successful Placements" },
-  { value: 100, suffix: "+", label: "Hiring Companies" },
-  { value: 50, suffix: "+", label: "Technology Courses" },
-  { value: 95, suffix: "%", label: "Client Satisfaction" },
+/** Placeholder figures — edit these values to update the homepage counters. */
+export const HOME_STATS = [
+  { value: 1000, suffix: "+", label: "Students Trained", icon: GraduationCap },
+  { value: 350, suffix: "+", label: "Interns Supported", icon: Rocket },
+  { value: 120, suffix: "+", label: "Projects Delivered", icon: FolderCheck },
+  { value: 100, suffix: "+", label: "Business Partners", icon: Handshake },
 ];
 
 const Counter = ({ value, suffix, active }: { value: number; suffix: string; active: boolean }) => {
@@ -22,7 +23,7 @@ const Counter = ({ value, suffix, active }: { value: number; suffix: string; act
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [active, value]);
-  return <span>{n}{suffix}</span>;
+  return <span>{n.toLocaleString("en-IN")}{suffix}</span>;
 };
 
 const StatsCounter = () => {
@@ -32,28 +33,24 @@ const StatsCounter = () => {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => e.isIntersecting && setActive(true),
-      { threshold: 0.3 }
-    );
+    const obs = new IntersectionObserver(([e]) => e.isIntersecting && setActive(true), { threshold: 0.3 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
   return (
-    <section ref={ref} className="py-20 lg:py-24 gradient-primary text-primary-foreground relative overflow-hidden">
-      <div className="absolute inset-0 grid-pattern opacity-10" />
+    <section ref={ref} className="relative overflow-hidden gradient-hero py-16 text-primary-foreground lg:py-20">
+      <div className="absolute inset-0 grid-pattern opacity-10" aria-hidden />
       <div className="container relative">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-14">
-          Why Companies Trust AADHYRA
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center rounded-2xl bg-white/10 backdrop-blur-sm border border-white/15 p-6">
-              <div className="font-heading text-3xl md:text-4xl font-bold">
-                <Counter value={s.value} suffix={s.suffix} active={active} />
+        <h2 className="mb-12 text-center font-heading text-3xl font-bold md:text-4xl">Our Impact in Numbers</h2>
+        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
+          {HOME_STATS.map(({ value, suffix, label, icon: Icon }) => (
+            <div key={label} className="rounded-2xl border border-primary-foreground/15 bg-primary-foreground/10 p-5 text-center backdrop-blur-sm md:p-7">
+              <Icon className="mx-auto mb-3 h-6 w-6 text-accent" />
+              <div className="font-heading text-3xl font-bold md:text-4xl">
+                <Counter value={value} suffix={suffix} active={active} />
               </div>
-              <div className="text-xs md:text-sm text-white/75 mt-2">{s.label}</div>
+              <div className="mt-2 text-xs text-primary-foreground/75 md:text-sm">{label}</div>
             </div>
           ))}
         </div>

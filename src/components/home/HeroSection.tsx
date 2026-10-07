@@ -1,77 +1,104 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, Cpu, GraduationCap, Briefcase, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Code2, GraduationCap, TrendingUp } from "lucide-react";
+import heroImage from "@/assets/hero-aadhyra.jpg";
+
+const pillars = [
+  { icon: Code2, label: "Technology" },
+  { icon: GraduationCap, label: "Careers" },
+  { icon: TrendingUp, label: "Business Growth" },
+];
 
 const HeroSection = () => {
   return (
     <section className="relative overflow-hidden gradient-hero text-primary-foreground">
-      {/* Animated tech background */}
-      <div className="absolute inset-0 grid-pattern opacity-[0.12]" />
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-16 left-8 w-72 h-72 bg-white/25 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-8 w-96 h-96 bg-accent/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1.5s" }} />
-        <div className="absolute top-1/3 left-1/2 w-80 h-80 bg-tech/30 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "3s" }} />
-      </div>
-      {/* Floating tech particles */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block">
-        {[
-          { Icon: Code2, cls: "top-24 left-[8%]", d: "0s" },
-          { Icon: Cpu, cls: "top-40 right-[10%]", d: "1s" },
-          { Icon: GraduationCap, cls: "bottom-28 left-[14%]", d: "2s" },
-          { Icon: Briefcase, cls: "bottom-40 right-[16%]", d: "1.5s" },
-        ].map(({ Icon, cls, d }, i) => (
-          <div key={i} className={`absolute ${cls} h-14 w-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center animate-float`} style={{ animationDelay: d }}>
-            <Icon className="h-6 w-6 text-white/80" />
-          </div>
-        ))}
-      </div>
+      <div className="absolute inset-0 grid-pattern opacity-[0.12]" aria-hidden />
+      <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-tech/30 blur-3xl" aria-hidden />
+      <div className="absolute -bottom-40 right-0 h-[28rem] w-[28rem] rounded-full bg-accent/20 blur-3xl" aria-hidden />
 
-      <div className="container relative z-10 pt-20 pb-32 lg:pt-28 lg:pb-44">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 mb-6 animate-fade-in">
-            <Sparkles className="h-4 w-4 text-accent" />
-            <span className="text-xs sm:text-sm font-medium tracking-wide">AADHYRA INNOVATIONS PVT LTD · Empowering Careers, Businesses &amp; Technology</span>
+      <div className="container relative z-10 grid items-center gap-12 py-16 md:py-20 lg:grid-cols-2 lg:gap-14 lg:py-24">
+        {/* Text */}
+        <div className="text-center lg:text-left animate-fade-in-up">
+          <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 backdrop-blur-sm">
+            <span className="h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
+            <span className="truncate text-[11px] font-medium tracking-wide sm:text-xs">
+              AADHYRA INNOVATIONS PVT LTD • Empowering Careers, Businesses &amp; Technology
+            </span>
           </div>
 
-          <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            Your Trusted Technology &amp; Career Growth Partner
+          <h1 className="mt-6 font-heading text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl xl:text-[3.4rem]">
+            Your Trusted{" "}
+            <span className="relative whitespace-nowrap">
+              Technology
+              <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-accent" aria-hidden />
+            </span>{" "}
+            &amp; Career Growth Partner
           </h1>
 
-          <p className="text-base md:text-lg text-white/85 mb-9 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 md:text-lg lg:mx-0">
             We provide Software Development, AI Solutions, Corporate Training, Professional Internships,
             Recruitment Services, Campus Hiring, and Career Development through one integrated platform.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <a href="#services">
-              <Button variant="accent" size="xl" className="group w-full sm:w-auto rounded-full">
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
+            <a href="#what-we-do" className="w-full sm:w-auto">
+              <Button variant="accent" size="lg" className="group w-full rounded-full sm:w-auto">
                 Explore Services
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <Link to="/internships">
-              <Button variant="heroOutline" size="xl" className="w-full sm:w-auto rounded-full">
+            <Link to="/internships" className="w-full sm:w-auto">
+              <Button variant="heroOutline" size="lg" className="w-full rounded-full sm:w-auto">
                 Apply for Internship
               </Button>
             </Link>
-            <Link to="/employer/register">
-              <Button variant="heroOutline" size="xl" className="w-full sm:w-auto rounded-full">
+            <Link to="/employer/register" className="w-full sm:w-auto">
+              <Button variant="heroOutline" size="lg" className="w-full rounded-full sm:w-auto">
                 Hire Talent
               </Button>
             </Link>
           </div>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs sm:text-sm text-white/70 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-healthcare" /> ISO-grade delivery process</span>
-            <span className="inline-flex items-center gap-2"><GraduationCap className="h-4 w-4 text-accent" /> 1000+ professionals trained</span>
-            <span className="inline-flex items-center gap-2"><Briefcase className="h-4 w-4 text-white/80" /> 100+ hiring companies</span>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:justify-start">
+            {pillars.map(({ icon: Icon, label }) => (
+              <span key={label} className="inline-flex items-center gap-2 text-sm font-medium text-primary-foreground/80">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-foreground/10">
+                  <Icon className="h-4 w-4 text-accent" />
+                </span>
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Visual */}
+        <div className="relative mx-auto w-full max-w-xl animate-fade-in lg:max-w-none">
+          <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-tr from-accent/40 via-tech/30 to-transparent blur-2xl" aria-hidden />
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-primary-foreground/15 shadow-2xl">
+            <img
+              src={heroImage}
+              alt="Young Indian professionals collaborating on technology projects with AI, global network and career growth visuals"
+              width={1280}
+              height={1024}
+              fetchPriority="high"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="absolute -bottom-5 left-4 hidden items-center gap-3 rounded-2xl border bg-card px-4 py-3 text-card-foreground shadow-card sm:flex">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl gradient-accent">
+              <TrendingUp className="h-5 w-5 text-accent-foreground" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold">Learn · Build · Hire · Grow</p>
+              <p className="text-xs text-muted-foreground">One integrated platform</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-          <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="hsl(var(--background))" />
+      <div className="absolute bottom-0 left-0 right-0" aria-hidden>
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-auto w-full">
+          <path d="M0 80L80 70C160 60 320 40 480 32C640 24 800 28 960 36C1120 44 1280 56 1360 62L1440 68V80H0Z" fill="hsl(var(--background))" />
         </svg>
       </div>
     </section>
