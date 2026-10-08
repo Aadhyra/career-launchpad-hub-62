@@ -17,9 +17,11 @@ const QUICK = [
 ];
 
 const parseRoute = (text: string): { clean: string; route?: { path: string; label: string } } => {
-  const m = text.match(/\[ROUTE:([^|\]]+)\|([^\]]+)\]/);
+  const m = text.match(/\[ROUTE:([^|\]]+)(?:\|([^\]]+))?\]/);
   if (!m) return { clean: text };
-  return { clean: text.replace(m[0], "").trim(), route: { path: m[1].trim(), label: m[2].trim() } };
+  const path = m[1].trim();
+  const label = (m[2] || "").trim() || "View page";
+  return { clean: text.replace(m[0], "").trim(), route: { path, label } };
 };
 
 const AIChatbot = () => {
