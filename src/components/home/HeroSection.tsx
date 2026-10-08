@@ -27,12 +27,7 @@ const HeroSection = () => {
           </div>
 
           <h1 className="mt-6 font-heading text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl xl:text-[3.4rem]">
-            Your Trusted{" "}
-            <span className="relative whitespace-nowrap">
-              Technology
-              <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-accent" aria-hidden />
-            </span>{" "}
-            &amp; Career Growth Partner
+            Your Trusted Technology &amp; Career Growth Partner
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 md:text-lg lg:mx-0">
