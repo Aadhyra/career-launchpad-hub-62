@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://career-launchpad-hub-62.lovable.app/sitemap.xml

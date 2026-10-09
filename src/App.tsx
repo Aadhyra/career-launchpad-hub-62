@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import AIChatbot from "@/components/shared/AIChatbot";
+import { HelmetProvider } from "react-helmet-async";
+import PageSeo from "@/components/shared/PageSeo";
 
 // Public Pages
 import Index from "./pages/Index";
@@ -110,11 +112,13 @@ import EmployerSettings from "./pages/employer/EmployerSettings";
 const queryClient = new QueryClient();
 
 const App = () => (
+  <HelmetProvider>
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <PageSeo />
         <AuthProvider>
           <Routes>
             {/* Public Routes */}
@@ -249,6 +253,7 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;
