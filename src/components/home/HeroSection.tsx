@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, GraduationCap, TrendingUp } from "lucide-react";
+import { ArrowRight, Code2, BriefcaseBusiness, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/hero-aadhyra.jpg";
 
 const pillars = [
   { icon: Code2, label: "Technology" },
-  { icon: GraduationCap, label: "Careers" },
+  { icon: BriefcaseBusiness, label: "Business Services" },
   { icon: TrendingUp, label: "Business Growth" },
 ];
 
@@ -22,17 +22,18 @@ const HeroSection = () => {
           <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 backdrop-blur-sm">
             <span className="h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
             <span className="truncate text-[11px] font-medium tracking-wide sm:text-xs">
-              AADHYRA INNOVATIONS PVT LTD • Empowering Careers, Businesses &amp; Technology
+              AADHYRA INNOVATIONS PVT LTD • Technology &amp; Business Solutions
             </span>
           </div>
 
           <h1 className="mt-6 font-heading text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl xl:text-[3.4rem]">
-            Your Trusted Technology &amp; Career Growth Partner
+            Your Technology &amp; Business Growth Partner
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/85 md:text-lg lg:mx-0">
-            We provide Software Development, AI Solutions, Corporate Training, Professional Internships,
-            Recruitment Services, Campus Hiring, and Career Development through one integrated platform.
+            We build software, create AI solutions and automate business processes.
+            From digital products and recruitment to corporate training and career development,
+            our services help businesses and people move forward.
           </p>
 
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start">
@@ -42,9 +43,9 @@ const HeroSection = () => {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
-            <Link to="/internships" className="w-full sm:w-auto">
+            <Link to="/contact" className="w-full sm:w-auto">
               <Button variant="heroOutline" size="lg" className="w-full rounded-full sm:w-auto">
-                Apply for Internship
+                Discuss Your Project
               </Button>
             </Link>
             <Link to="/employer/register" className="w-full sm:w-auto">
@@ -84,8 +85,8 @@ const HeroSection = () => {
               <TrendingUp className="h-5 w-5 text-accent-foreground" />
             </span>
             <div>
-              <p className="text-sm font-semibold">Learn · Build · Hire · Grow</p>
-              <p className="text-xs text-muted-foreground">One integrated platform</p>
+              <p className="text-sm font-semibold">Build · Automate · Hire · Grow</p>
+              <p className="text-xs text-muted-foreground">Technology &amp; business services</p>
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { BookOpen, BriefcaseBusiness, Building2, ArrowRight, Check } from "lucide-react";
+import { Code2, BriefcaseBusiness, Building2, ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Reveal from "./Reveal";
 
 const paths = [
-  { icon: BookOpen, title: "Students & learners", description: "Build skills through professional courses and practical internships.", benefits: ["Training in IT, HR, marketing, design and nursing", "Project work and practical tasks", "Certificates subject to program completion"], href: "/courses", cta: "Explore courses" },
-  { icon: BriefcaseBusiness, title: "Job seekers & professionals", description: "Prepare for your next opportunity and explore available roles.", benefits: ["Resume and portfolio building tools", "Interview preparation and assessments", "Job listings and placement assistance"], href: "/career", cta: "Find opportunities" },
-  { icon: Building2, title: "Businesses & colleges", description: "Build technology, develop teams and connect with talent.", benefits: ["Software, AI and business automation solutions", "Recruitment and corporate training", "Campus hiring and college partnerships"], href: "/services", cta: "Explore business services" },
+  { icon: Code2, title: "Technology for your business", description: "Turn your ideas into digital solutions that support everyday work and business growth.", benefits: ["Custom websites, mobile apps and enterprise software", "AI assistants and workflow automation", "Cloud, data analytics and CRM solutions"], href: "/services", cta: "Explore technology services" },
+  { icon: Building2, title: "Teams & business growth", description: "Find the right people and strengthen your team with services built around your goals.", benefits: ["Recruitment and talent connections", "Corporate training and team development", "Campus hiring and college partnerships"], href: "/placement", cta: "Explore talent services" },
+  { icon: BriefcaseBusiness, title: "Skills & career opportunities", description: "Build practical experience and prepare for your next career step.", benefits: ["Professional courses and project-based internships", "Certificates earned through program completion", "Resume, portfolio and interview support"], href: "/courses", cta: "Explore learning opportunities" },
 ];
 
 export default function VisitorPaths() {
@@ -15,10 +15,10 @@ export default function VisitorPaths() {
       <div className="container">
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold text-accent">Who we are</p>
-          <h2 id="visitor-paths-title" className="mt-3 font-heading text-3xl font-bold text-foreground md:text-4xl">A technology and career-growth company</h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">AADHYRA INNOVATIONS PVT LTD brings together software and AI services, professional training, internships and recruitment. We help people develop practical skills and help businesses build solutions and teams.</p>
+          <h2 id="visitor-paths-title" className="mt-3 font-heading text-3xl font-bold text-foreground md:text-4xl">Technology that powers your business. Services that help you grow.</h2>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">AADHYRA INNOVATIONS PVT LTD is your partner for software development, AI solutions and business services. We help companies build digital products, automate work and connect with talent — alongside practical learning and career opportunities for individuals.</p>
         </Reveal>
-        <h3 className="mt-10 font-heading text-xl font-semibold text-foreground">What you can get with Aadhyra</h3>
+        <h3 className="mt-10 font-heading text-xl font-semibold text-foreground">Solutions for your business, team and future</h3>
         <div className="mt-6 grid gap-5 lg:grid-cols-3">
           {paths.map(({ icon: Icon, title, description, benefits, href, cta }) => (
             <article key={title} className="flex min-w-0 flex-col rounded-lg border bg-card p-6 shadow-card">
@@ -32,8 +32,7 @@ export default function VisitorPaths() {
             </article>
           ))}
         </div>
-        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">Program fees, eligibility and benefits vary. Check the selected program before applying. Placement assistance is not a job guarantee; internship stipends depend on the applicable eligibility and task requirements.</p>
-        <Button asChild variant="link" className="mt-2 h-auto px-0"><Link to="/contact">Not sure where to start? Talk to us<ArrowRight className="h-4 w-4" /></Link></Button>
+        <Button asChild variant="link" className="mt-6 h-auto px-0 whitespace-normal text-left"><Link to="/contact">Let’s find the right solution for you<ArrowRight className="h-4 w-4 shrink-0" /></Link></Button>
       </div>
     </section>
   );

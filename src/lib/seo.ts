@@ -2,7 +2,7 @@ export const SITE_URL = "https://career-launchpad-hub-62.lovable.app";
 export const SITE_NAME = "AADHYRA INNOVATIONS PVT LTD";
 
 export const publicPages: Record<string, { title: string; description: string }> = {
-  "/": { title: "Software Development, Training & Internships", description: "AADHYRA INNOVATIONS PVT LTD provides software development, AI solutions, professional training, internships, recruitment and career support." },
+  "/": { title: "Software Development, AI & Business Services", description: "AADHYRA INNOVATIONS PVT LTD helps businesses grow with software development, AI solutions, automation and recruitment, alongside corporate training and career opportunities." },
   "/about": { title: "About Aadhyra Innovations", description: "Meet AADHYRA INNOVATIONS PVT LTD: technology solutions, practical learning and career support for students, professionals and businesses." },
   "/courses": { title: "Professional Training Courses", description: "Explore IT, HR, digital marketing, graphic design and nursing training. Compare programs, fees and learning opportunities at Aadhyra Innovations." },
   "/courses/it": { title: "IT Training Courses", description: "Explore technology training in Java, Python, AI, cloud and software development at Aadhyra Innovations." },
@@ -29,7 +29,7 @@ export const publicPages: Record<string, { title: string; description: string }>
   "/placement/tech-partner": { title: "AADHYRA TECH PARTNER", description: "Explore technology projects and professional collaboration with AADHYRA TECH PARTNER." },
   "/placement/health-connect": { title: "AADHYRA HEALTH CONNECT", description: "Explore healthcare services and AI-assisted health tools with AADHYRA HEALTH CONNECT." },
   "/placement/ai-lab": { title: "AADHYRA LAB", description: "Explore AI-assisted creation and technology tools with AADHYRA LAB." },
-  "/contact": { title: "Contact Aadhyra Innovations", description: "Contact Aadhyra Innovations about courses, internships, recruitment, campus partnerships and business technology services." },
+  "/contact": { title: "Contact Aadhyra Innovations", description: "Connect with Aadhyra Innovations for software development, AI, business services, recruitment, corporate training and career opportunities." },
 };
 
 export function getPageSeo(pathname: string) {
