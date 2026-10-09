@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
-import { Code2, Brain, GraduationCap, Rocket, Briefcase, School, TrendingUp, ArrowRight } from "lucide-react";
+import { Code2, Brain, GraduationCap, Rocket, Briefcase, School, Cloud, BarChart3, ArrowRight } from "lucide-react";
 import Reveal from "./Reveal";
 
 const services = [
   { icon: Code2, title: "Software Development", desc: "Custom web, mobile and enterprise software built to scale.", href: "/services" },
   { icon: Brain, title: "AI Solutions", desc: "Chatbots, automation and machine learning for smarter business.", href: "/services/ai" },
-  { icon: GraduationCap, title: "Corporate Training", desc: "Industry-designed programs in tech, data, marketing and HR.", href: "/courses" },
-  { icon: Rocket, title: "Professional Internships", desc: "Live projects, mentor guidance and verified certificates.", href: "/internships" },
+  { icon: Cloud, title: "Cloud & Enterprise Solutions", desc: "Connected platforms and cloud services that support your operations.", href: "/services/cloud" },
+  { icon: BarChart3, title: "Data & Business Intelligence", desc: "Turn business data into clear insights and better decisions.", href: "/services/data-analytics" },
   { icon: Briefcase, title: "Recruitment Services", desc: "Fresher and experienced hiring, RPO and HR consulting.", href: "/placement" },
   { icon: School, title: "Campus Hiring", desc: "End-to-end campus drives with colleges across India.", href: "/campus-drive" },
-  { icon: TrendingUp, title: "Career Development", desc: "Resume building, interview prep and placement support.", href: "/careers" },
+  { icon: GraduationCap, title: "Corporate Training", desc: "Practical training that helps your team build industry-ready skills.", href: "/courses" },
+  { icon: Rocket, title: "Internships & Career Development", desc: "Project experience, mentoring and support for your next career step.", href: "/internships" },
 ];
 
 const ServicesSection = () => (
@@ -18,16 +19,16 @@ const ServicesSection = () => (
       <Reveal className="mx-auto mb-12 max-w-2xl text-center">
         <span className="text-sm font-semibold uppercase tracking-wider text-accent">What We Do</span>
         <h2 className="mt-3 font-heading text-3xl font-bold text-foreground md:text-4xl">
-          Technology, talent and growth — under one roof
+          Technology &amp; services built around your goals
         </h2>
       </Reveal>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map(({ icon: Icon, title, desc, href }, i) => (
-          <Reveal key={title} delay={(i % 4) * 90} className={i === 6 ? "sm:col-span-2 lg:col-span-1" : ""}>
+          <Reveal key={title} delay={(i % 4) * 90}>
             <Link
               to={href}
-              className="group flex h-full flex-col rounded-2xl border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-card-hover"
+              className="group flex h-full flex-col rounded-lg border bg-card p-6 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-card-hover"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
                 <Icon className="h-6 w-6 text-primary transition-colors duration-300 group-hover:text-primary-foreground" />
