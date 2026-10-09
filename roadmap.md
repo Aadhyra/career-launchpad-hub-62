@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Clarify homepage company identity, services, and visitor benefits
-- [ ] Improve sitewide search metadata and public page discovery
-- [ ] Verify homepage clarity and search changes
+- [x] Clarify homepage company identity, services, and visitor benefits
+- [x] Improve sitewide search metadata and public page discovery
+- [x] Verify homepage clarity and search changes
 
 - [x] Add IT services content to About
 - [x] Add Google-style ratings to course cards
