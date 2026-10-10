@@ -8,14 +8,6 @@ import bgAiLab from "@/assets/card-bg-ailab.jpg";
 
 const products = [
   {
-    title: "AADHYRA Talent Connect",
-    desc: "AI-powered Recruitment & Placement Platform connecting students, job seekers, colleges, and employers.",
-    icon: Search,
-    image: bgTalent,
-    tint: "from-blue-500/40 to-primary/50",
-    to: "/placement/talent-connect",
-  },
-  {
     title: "AADHYRA Tech Partner",
     desc: "Complete IT Services, Software Development, Digital Transformation, and Technology Consulting.",
     icon: Code,
@@ -24,12 +16,20 @@ const products = [
     to: "/placement/tech-partner",
   },
   {
-    title: "AADHYRA AI Lab",
+    title: "AADHYRA LAB",
     desc: "Advanced Artificial Intelligence Solutions, Automation, AI Tools, and Research.",
     icon: Brain,
     image: bgAiLab,
     tint: "from-violet-400/40 to-purple-700/50",
     to: "/placement/ai-lab",
+  },
+  {
+    title: "AADHYRA Talent Connect",
+    desc: "AI-powered recruitment connecting businesses with professionals, job seekers and colleges.",
+    icon: Search,
+    image: bgTalent,
+    tint: "from-primary/40 to-tech/50",
+    to: "/placement/talent-connect",
   },
   {
     title: "AADHYRA Health Connect",
@@ -48,7 +48,7 @@ const ProductsSection = () => (
       <div className="text-center max-w-2xl mx-auto mb-14">
         <span className="text-accent font-semibold text-sm uppercase tracking-wider">Our Ecosystem</span>
         <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3">Our Technology Products</h2>
-        <p className="text-white/75 mt-4">Four platforms built by AADHYRA INNOVATIONS to power hiring, technology, AI and healthcare.</p>
+        <p className="text-primary-foreground/75 mt-4">Discover our platforms for technology, AI, recruitment and healthcare services.</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
