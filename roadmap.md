@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Foreground technology and business services on the homepage
-- [ ] Replace discouraging public marketing copy with clear, positive wording
-- [ ] Verify updated homepage presentation and links
+- [x] Foreground technology and business services on the homepage
+- [x] Replace discouraging homepage marketing copy with clear, positive wording; preserve important legal and payment terms
+- [x] Verify updated homepage presentation and links
 
 - [x] Clarify homepage company identity, services, and visitor benefits
 - [x] Improve sitewide search metadata and public page discovery
