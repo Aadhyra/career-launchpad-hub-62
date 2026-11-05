@@ -1582,10 +1582,12 @@ export type Database = {
           id: string
           includes: Json | null
           is_active: boolean | null
+          ppt_url: string | null
           preview_url: string | null
           price: number
           project_type: string | null
           source_code_url: string | null
+          synopsis_url: string | null
           tech_stack: string[] | null
           thumbnail_url: string | null
           title: string
@@ -1599,10 +1601,12 @@ export type Database = {
           id?: string
           includes?: Json | null
           is_active?: boolean | null
+          ppt_url?: string | null
           preview_url?: string | null
           price?: number
           project_type?: string | null
           source_code_url?: string | null
+          synopsis_url?: string | null
           tech_stack?: string[] | null
           thumbnail_url?: string | null
           title: string
@@ -1616,10 +1620,12 @@ export type Database = {
           id?: string
           includes?: Json | null
           is_active?: boolean | null
+          ppt_url?: string | null
           preview_url?: string | null
           price?: number
           project_type?: string | null
           source_code_url?: string | null
+          synopsis_url?: string | null
           tech_stack?: string[] | null
           thumbnail_url?: string | null
           title?: string
