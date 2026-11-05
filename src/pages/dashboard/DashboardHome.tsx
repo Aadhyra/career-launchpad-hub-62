@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
 import { Loader2 } from 'lucide-react';
 
 // Imports mapped exactly to your folder structure layout
@@ -10,39 +9,17 @@ import AdminDashboard from '../admin/AdminDashboard';
 import FreelancerDashboard from '../freelancer/FreelancerDashboard'; // Added freelancer component
 
 const DashboardHome = () => {
-  const { user } = useAuth();
-  const [userRole, setUserRole] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { user, userRole, loading: authLoading } = useAuth();
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
-    const fetchUserRoleMatrix = async () => {
-      if (!user) return;
-      try {
-        const { data, error } = await (supabase
-          .from('profiles')
-          .select('user_type')
-          .eq('id', user.id)
-          .maybeSingle() as any);
+    // Role comes from the protected user_roles table via AuthContext (already
+    // resolved before the auth context releases loading), so the very first
+    // render after sign-in shows the right workspace without a second lookup.
+    if (!authLoading) setChecked(true);
+  }, [authLoading]);
 
-        if (error) throw error;
-
-        if (data?.user_type) {
-          setUserRole(data.user_type);
-        } else {
-          setUserRole('student');
-        }
-      } catch (err) {
-        console.error("Failed to parse user workspace role context:", err);
-        setUserRole('student');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserRoleMatrix();
-  }, [user]);
-
-  if (loading) {
+  if (authLoading || !checked) {
     return (
       <div className="flex items-center justify-center h-screen w-full">
         <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -57,7 +34,7 @@ const DashboardHome = () => {
     case 'employer':
       return <EmployerDashboard />;
     case 'freelancer':
-      return <FreelancerDashboard />; // Serves up the newly structured workspace UI
+      return <FreelancerDashboard />;
     case 'student':
     default:
       return <StudentDashboard />;
