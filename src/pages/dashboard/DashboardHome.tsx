@@ -62,6 +62,5 @@ const DashboardHome = () => {
     default:
       return <StudentDashboard />;
   }
-};
 
 export default DashboardHome;
