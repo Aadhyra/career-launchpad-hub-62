@@ -1,23 +1,25 @@
 # Roadmap
 
-## Active batch (user request "Do it" — 11 tasks)
+## Active batch (user request — sample certificate)
 
-- [ ] 1. Live projects: working buy flow (Razorpay demo edge functions) + post-purchase access to PPT/code/docs assets per project
-- [ ] 2. Certificates: demo/sample certificate styled with AADHYRA logo
-- [ ] 3. Student dashboard + My Courses: correct data connection after sign-in
-- [ ] 4. Interview & exam rounds (MCQ, coding, HR) all with webcam; department-based questions, no repeats
-- [ ] 5. Resume builder & portfolio: more attractive and easier
-- [ ] 6. Careers page: add AI/ML Developer, Education Counselor, Admin, Senior BDM + "How our hiring process works" section
-- [ ] 7. About page: more points, easier to read, motto clear
-- [ ] 8. HR Task 1: simpler upload, verified working after sign-in
-- [ ] 9. Password eye toggle everywhere passwords are entered
-- [ ] 10. Chat box: smarter AI-based assistant
-- [ ] 11. WhatsApp lead button on site (need user's WhatsApp Business number)
+- [ ] Build a branded sample certificate using the supplied AADHYRA logo; make the PDF downloadable from the student Certificates page and add a direct Certificates shortcut on the student dashboard.
+- [ ] Verify the generated PDF is valid, the sample is clearly marked as non-credential, and both student entry points reach it.
 
 ## Waiting on user
 
 - [ ] Replace placeholder homepage statistics with real numbers (waiting on figures)
 - [ ] WhatsApp Business number for the lead button
+
+## Earlier requested improvements not yet completed
+
+- [ ] Secure project checkout and post-purchase project asset access
+- [ ] Validate student dashboard and My Courses live data/error handling
+- [ ] Department-specific, non-repeating interview question flow while retaining webcam checks
+- [ ] Improve resume builder and portfolio usability
+- [ ] Complete requested careers and About page updates
+- [ ] Simplify HR task proof uploads without changing deadline or eligibility rules
+- [ ] Add show/hide controls to all account password fields
+- [ ] Improve AI chat guidance and error handling
 
 ## Done (previous batches)
 
@@ -31,3 +33,6 @@
 - [x] Connect Super Admin KPIs and Reports Center to live data
 - [x] Restore admin sign-in for rgmprasanth@gmail.com
 - [x] Redesign homepage (hero, vision, what we do, why us, stats, testimonials, final CTA)
+- [x] Fix student dashboard role-based workspace selection
+- [x] Add project PPT and synopsis URL fields
+- [x] Add reusable password show/hide input

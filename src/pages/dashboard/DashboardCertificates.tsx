@@ -9,6 +9,7 @@ import {
   Award, Download, QrCode, Loader2, CheckCircle, Clock, 
   ExternalLink, GraduationCap, Briefcase, Eye, Shield, Star
 } from 'lucide-react';
+import companyLogo from '@/assets/aadhyra-logo.png';
 
 interface Certificate {
   id: string;
@@ -70,6 +71,37 @@ const DashboardCertificates = () => {
         <h2 className="text-2xl font-heading font-bold">My Certificates</h2>
         <p className="text-muted-foreground">View, download, and verify your earned certificates</p>
       </div>
+
+      <Card id="sample-certificate" className="overflow-hidden border-primary/20">
+        <CardContent className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-lg border bg-background p-1.5">
+              <img src={companyLogo} alt="AADHYRA INNOVATIONS PVT LTD logo" className="max-h-full max-w-full object-contain" />
+            </div>
+            <div className="min-w-0">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <h3 className="font-semibold">Sample Certificate</h3>
+                <Badge variant="outline">Sample only</Badge>
+              </div>
+              <p className="max-w-2xl text-sm text-muted-foreground">
+                Preview the AADHYRA certificate design and download a sample PDF. This example is not an issued or verifiable credential.
+              </p>
+            </div>
+          </div>
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+            <Button variant="outline" asChild>
+              <a href="/downloads/aadhyra-sample-certificate.pdf" target="_blank" rel="noopener noreferrer">
+                <Eye className="mr-2 h-4 w-4" /> Preview
+              </a>
+            </Button>
+            <Button asChild>
+              <a href="/downloads/aadhyra-sample-certificate.pdf" download="aadhyra-sample-certificate.pdf">
+                <Download className="mr-2 h-4 w-4" /> Download Sample
+              </a>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Summary Stats */}
       <div className="grid gap-4 md:grid-cols-3">
