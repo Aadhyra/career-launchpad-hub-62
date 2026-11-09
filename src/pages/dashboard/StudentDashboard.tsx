@@ -151,6 +151,9 @@ const DashboardHome = () => {
             <p className="text-white/85 max-w-xl">
               Your career engine is running. Keep learning, building & shipping — placements love consistency.
             </p>
+            <Link to="/dashboard/certificates" className="mt-4 inline-flex items-center gap-2 rounded-md bg-background px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-background/90">
+              <Award className="h-4 w-4" /> View Certificates <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
           <div className="flex items-center gap-3 bg-white/10 backdrop-blur rounded-xl p-3 border border-white/20">
             <Flame className="h-8 w-8 text-orange-300" />
