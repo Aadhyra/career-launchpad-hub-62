@@ -3,6 +3,7 @@
 ## Active batch (user request — sample certificate)
 
 - [ ] Build a branded sample certificate using the supplied AADHYRA logo; make the PDF downloadable from the student Certificates page and add a direct Certificates shortcut on the student dashboard.
+- [ ] Replace the website logo asset with the user-approved uploaded logo while preserving the established public brand identity.
 - [ ] Verify the generated PDF is valid, the sample is clearly marked as non-credential, and both student entry points reach it.
 
 ## Waiting on user
