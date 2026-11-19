@@ -1,9 +1,9 @@
 export const SITE_URL = "https://career-launchpad-hub-62.lovable.app";
-export const SITE_NAME = "AADHYRA INNOVATIONS PVT LTD";
+export const SITE_NAME = "AADHYRA INNOVATIONS";
 
 export const publicPages: Record<string, { title: string; description: string }> = {
-  "/": { title: "Software Development, AI & Business Services", description: "AADHYRA INNOVATIONS PVT LTD helps businesses grow with software development, AI solutions, automation and recruitment, alongside corporate training and career opportunities." },
-  "/about": { title: "About Aadhyra Innovations", description: "Meet AADHYRA INNOVATIONS PVT LTD: technology solutions, practical learning and career support for students, professionals and businesses." },
+  "/": { title: "Software Development, AI & Business Services", description: "AADHYRA INNOVATIONS helps businesses grow with software development, AI solutions, automation and recruitment, alongside corporate training and career opportunities." },
+  "/about": { title: "About Aadhyra Innovations", description: "Meet AADHYRA INNOVATIONS: technology solutions, practical learning and career support for students, professionals and businesses." },
   "/courses": { title: "Professional Training Courses", description: "Explore IT, HR, digital marketing, graphic design and nursing training. Compare programs, fees and learning opportunities at Aadhyra Innovations." },
   "/courses/it": { title: "IT Training Courses", description: "Explore technology training in Java, Python, AI, cloud and software development at Aadhyra Innovations." },
   "/courses/hr": { title: "HR Training Courses", description: "Explore HR generalist, recruitment and payroll training with practical learning at Aadhyra Innovations." },

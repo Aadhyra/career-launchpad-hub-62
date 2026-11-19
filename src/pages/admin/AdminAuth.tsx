@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
 import { Shield, Mail, Lock, Loader2 } from 'lucide-react';
-import shikshaLogo from '@/assets/aadhyra-logo.png';
+import shikshaLogo from '@/assets/aadhyra-innovations-logo.png.asset.json';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -92,7 +92,7 @@ const AdminAuth = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2">
-            <img src={shikshaLogo} alt="AADHYRA INNOVATIONS PVT LTD" className="h-12 w-auto" />
+            <img src={shikshaLogo.url} alt="AADHYRA INNOVATIONS logo" className="h-12 w-auto" />
             <div>
               <span className="text-xl font-heading font-bold text-foreground">Aadhyra Innovations</span>
               <span className="block text-xs text-muted-foreground">Admin Portal</span>

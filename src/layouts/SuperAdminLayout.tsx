@@ -5,7 +5,7 @@ import { NAV_GROUPS, TOP_LINKS } from "@/lib/superadmin/nav";
 import { Button } from "@/components/ui/button";
 import { Loader2, Menu, X, ChevronDown, LogOut, ShieldCheck, Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/aadhyra-logo.png";
+import logo from "@/assets/aadhyra-innovations-logo.png.asset.json";
 
 const SuperAdminLayout = () => {
   const { user, loading, isAdmin, signOut } = useAuth();
@@ -37,7 +37,7 @@ const SuperAdminLayout = () => {
   const sidebar = (
     <aside className="w-72 h-full flex flex-col bg-card border-r">
       <Link to="/" className="flex items-center gap-2 px-4 h-16 border-b flex-shrink-0">
-        <img src={logo} alt="AADHYRA INNOVATIONS PVT LTD" className="h-9 w-auto" />
+        <img src={logo.url} alt="AADHYRA INNOVATIONS logo" className="h-9 w-auto" />
         <div className="leading-tight">
           <div className="font-heading text-sm font-bold text-foreground">AADHYRA</div>
           <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Super Admin</div>

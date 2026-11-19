@@ -81,7 +81,7 @@ const ContactSection = () => {
                 <span>
                   <span className="block font-heading font-semibold text-foreground">Office Address</span>
                   <span className="block text-sm text-muted-foreground">
-                    AADHYRA INNOVATIONS PVT LTD, Chennai, Tamil Nadu, India
+                    AADHYRA INNOVATIONS, Chennai, Tamil Nadu, India
                   </span>
                 </span>
               </div>

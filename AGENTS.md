@@ -6,3 +6,4 @@
 - Keep static sitewide social metadata in index.html as a non-JavaScript crawler fallback; route-specific metadata is client-rendered and does not provide per-page social previews.
 
 - Super Admin operational counters and reports read directly from Lovable Cloud tables and subscribe to live changes, so application, enrollment, and job updates appear without placeholder data.
+- Keep the public brand and registered legal entity as separate constants in `src/lib/companyIdentity.ts`; this prevents legal disclosures from replacing customer-facing branding.

@@ -33,15 +33,15 @@ interface JobPosting {
 }
 
 const featuredOpenings: JobPosting[] = [
-  { id: "featured-java", title: "Java Full Stack Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Java", "Spring Boot", "React", "SQL"] },
-  { id: "featured-python", title: "Python Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Python", "Django", "REST APIs", "SQL"] },
-  { id: "featured-analytics", title: "Data Analytics", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Power BI", "SQL", "Excel", "Python"] },
-  { id: "featured-scientist", title: "Data Scientist", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Python", "Machine Learning", "Statistics", "Data Modelling"] },
-  { id: "featured-mern", title: "MERN Stack Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["MongoDB", "Express", "React", "Node.js"] },
-  { id: "featured-dotnet", title: ".NET Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: [".NET", "C#", "ASP.NET Core", "SQL Server"] },
-  { id: "featured-wordpress", title: "WordPress Developer", department: "IT", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["WordPress", "PHP", "WooCommerce", "JavaScript"] },
-  { id: "featured-bdm", title: "Business Development Manager", department: "Digital Marketing", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 1, experience_max: 7, description: null, skills: ["Sales", "Lead Generation", "Client Relations", "Negotiation"] },
-  { id: "featured-hr", title: "Human Resources", department: "HR", company_name: "AADHYRA INNOVATIONS PVT. LTD.", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Recruitment", "HR Operations", "Employee Relations", "Payroll"] },
+  { id: "featured-java", title: "Java Full Stack Developer", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Java", "Spring Boot", "React", "SQL"] },
+  { id: "featured-python", title: "Python Developer", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Python", "Django", "REST APIs", "SQL"] },
+  { id: "featured-analytics", title: "Data Analytics", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Power BI", "SQL", "Excel", "Python"] },
+  { id: "featured-scientist", title: "Data Scientist", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Python", "Machine Learning", "Statistics", "Data Modelling"] },
+  { id: "featured-mern", title: "MERN Stack Developer", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["MongoDB", "Express", "React", "Node.js"] },
+  { id: "featured-dotnet", title: ".NET Developer", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: [".NET", "C#", "ASP.NET Core", "SQL Server"] },
+  { id: "featured-wordpress", title: "WordPress Developer", department: "IT", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["WordPress", "PHP", "WooCommerce", "JavaScript"] },
+  { id: "featured-bdm", title: "Business Development Manager", department: "Digital Marketing", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 1, experience_max: 7, description: null, skills: ["Sales", "Lead Generation", "Client Relations", "Negotiation"] },
+  { id: "featured-hr", title: "Human Resources", department: "HR", company_name: "AADHYRA INNOVATIONS", location: "India / Hybrid", job_type: "Full Time", salary_min: null, salary_max: null, experience_min: 0, experience_max: 5, description: null, skills: ["Recruitment", "HR Operations", "Employee Relations", "Payroll"] },
 ];
 
 const formatSalary = (amount: number | null) => {
@@ -280,7 +280,7 @@ const CareersPage = () => {
           <div className="container max-w-6xl">
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/10 border-primary/20">
-                AADHYRA INNOVATIONS PVT. LTD.
+                AADHYRA INNOVATIONS
               </Badge>
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
                 Candidate Evaluation & Hiring Process

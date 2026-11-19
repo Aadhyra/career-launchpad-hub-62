@@ -16,7 +16,7 @@ export default function VisitorPaths() {
         <Reveal className="max-w-3xl">
           <p className="text-sm font-semibold text-accent">Who we are</p>
           <h2 id="visitor-paths-title" className="mt-3 font-heading text-3xl font-bold text-foreground md:text-4xl">Technology that powers your business. Services that help you grow.</h2>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">AADHYRA INNOVATIONS PVT LTD is your partner for software development, AI solutions and business services. We help companies build digital products, automate work and connect with talent — alongside practical learning and career opportunities for individuals.</p>
+          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">AADHYRA INNOVATIONS is your partner for software development, AI solutions and business services. We help companies build digital products, automate work and connect with talent — alongside practical learning and career opportunities for individuals.</p>
         </Reveal>
         <h3 className="mt-10 font-heading text-xl font-semibold text-foreground">Solutions for your business, team and future</h3>
         <div className="mt-6 grid gap-5 lg:grid-cols-3">

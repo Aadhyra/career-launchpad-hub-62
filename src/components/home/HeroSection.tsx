@@ -22,7 +22,7 @@ const HeroSection = () => {
           <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-4 py-1.5 backdrop-blur-sm">
             <span className="h-2 w-2 flex-shrink-0 rounded-full bg-accent" />
             <span className="truncate text-[11px] font-medium tracking-wide sm:text-xs">
-              AADHYRA INNOVATIONS PVT LTD • Technology &amp; Business Solutions
+              AADHYRA INNOVATIONS • Technology &amp; Business Solutions
             </span>
           </div>
 

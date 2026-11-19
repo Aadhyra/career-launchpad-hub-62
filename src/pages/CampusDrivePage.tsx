@@ -13,7 +13,7 @@ import {
   ArrowLeft, GraduationCap, Building2, Users, Calendar, Sparkles,
   CheckCircle2, Loader2, Briefcase, MapPin, Award,
 } from 'lucide-react';
-import logo from '@/assets/aadhyra-logo.png';
+import logo from '@/assets/aadhyra-innovations-logo.png.asset.json';
 import { cn } from '@/lib/utils';
 
 const departments = [
@@ -122,7 +122,7 @@ const CampusDrivePage = () => {
         <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Back to Home
         </Link>
-        <Link to="/"><img src={logo} alt="Aadhyra Innovations" className="h-10 w-auto" /></Link>
+        <Link to="/"><img src={logo.url} alt="AADHYRA INNOVATIONS logo" className="h-10 w-auto" /></Link>
         <div className="w-20" />
       </header>
 

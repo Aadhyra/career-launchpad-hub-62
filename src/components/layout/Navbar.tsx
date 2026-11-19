@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import shikshaLogo from "@/assets/aadhyra-logo.png";
+import shikshaLogo from "@/assets/aadhyra-innovations-logo.png.asset.json";
 
 const courses = [
   { title: "IT Training", href: "/courses/it", description: "Java, Python, AI/ML, Cloud & more" },
@@ -94,10 +94,10 @@ const Navbar = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={shikshaLogo} alt="AADHYRA INNOVATIONS PVT LTD" className="h-12 w-auto" />
+          <img src={shikshaLogo.url} alt="AADHYRA INNOVATIONS logo" className="h-12 w-auto" />
           <div className="flex flex-col">
             <span className="text-[10px] leading-tight sm:text-lg font-heading font-bold text-foreground max-w-[140px] sm:max-w-none whitespace-normal sm:whitespace-nowrap">
-              AADHYRA INNOVATIONS PVT LTD
+              AADHYRA INNOVATIONS
             </span>
             <span className="hidden sm:block text-xs text-muted-foreground">Innovating Tomorrow, Today</span>
           </div>

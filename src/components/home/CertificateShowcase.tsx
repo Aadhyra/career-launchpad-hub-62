@@ -80,7 +80,7 @@ const CertificateShowcase = () => {
                     ))}
                   </div>
                   <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground font-medium">
-                    AADHYRA INNOVATIONS PVT LTD
+                    AADHYRA INNOVATIONS
                   </p>
                   <h3 className="text-2xl font-heading font-bold">Certificate of Completion</h3>
                   <p className="text-xs text-muted-foreground">This is to certify that</p>

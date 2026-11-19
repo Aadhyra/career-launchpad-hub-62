@@ -14,7 +14,7 @@ import {
   Loader2, Building2, ArrowLeft, ArrowRight, CheckCircle2, Users, Briefcase,
   Sparkles, ShieldCheck, Rocket, Target, TrendingUp, Award, MapPin, Globe,
 } from 'lucide-react';
-import logo from '@/assets/aadhyra-logo.png';
+import logo from '@/assets/aadhyra-innovations-logo.png.asset.json';
 import { cn } from '@/lib/utils';
 
 const industries = [
@@ -133,7 +133,7 @@ const EmployerRegister = () => {
           <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft className="h-4 w-4" /> Back to Home
           </Link>
-          <Link to="/"><img src={logo} alt="Aadhyra Innovations" className="h-10 w-auto" /></Link>
+          <Link to="/"><img src={logo.url} alt="AADHYRA INNOVATIONS logo" className="h-10 w-auto" /></Link>
           <Link to="/employer/auth">
             <Button variant="outline" size="sm">Already registered? Login</Button>
           </Link>
@@ -254,7 +254,7 @@ const EmployerRegister = () => {
         <button onClick={() => setShowForm(false)} className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" /> Back
         </button>
-        <Link to="/"><img src={logo} alt="Aadhyra Innovations" className="h-10 w-auto" /></Link>
+        <Link to="/"><img src={logo.url} alt="AADHYRA INNOVATIONS logo" className="h-10 w-auto" /></Link>
       </header>
 
       <div className="max-w-3xl mx-auto p-4 pb-12">

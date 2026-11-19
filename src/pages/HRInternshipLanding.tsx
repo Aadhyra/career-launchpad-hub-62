@@ -18,7 +18,7 @@ const HRInternshipLanding = () => {
           <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80')] bg-cover bg-center" />
           <div className="container relative z-10 text-center max-w-4xl mx-auto">
             <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur hover:bg-white/30">
-              AADHYRA INNOVATIONS PVT LTD
+              AADHYRA INNOVATIONS
             </Badge>
             <h1 className="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight">
               30 Days HR Internship Program

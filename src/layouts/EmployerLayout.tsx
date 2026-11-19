@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import logo from '@/assets/aadhyra-logo.png';
+import logo from '@/assets/aadhyra-innovations-logo.png.asset.json';
 
 interface EmployerData {
   id: string;
@@ -92,7 +92,7 @@ const EmployerLayout = () => {
       <aside className="hidden lg:flex flex-col w-64 bg-card border-r">
         <div className="p-4 border-b">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Aadhyra Innovations" className="h-10 w-auto" />
+            <img src={logo.url} alt="AADHYRA INNOVATIONS logo" className="h-10 w-auto" />
           </Link>
         </div>
 
@@ -163,7 +163,7 @@ const EmployerLayout = () => {
       >
         <div className="p-4 border-b flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Aadhyra Innovations" className="h-8 w-auto" />
+            <img src={logo.url} alt="AADHYRA INNOVATIONS logo" className="h-8 w-auto" />
           </Link>
           <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)}>
             <X className="h-5 w-5" />
